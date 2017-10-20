@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iiA-qa-5iI">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Authentication-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AuthenticationViewController" customModule="SwiftyProteins" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,89 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="molecule" translatesAutoresizingMaskIntoConstraints="NO" id="h6T-Yw-fH6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pZ-j0-KK2">
+                                <rect key="frame" x="112" y="283" width="150" height="100"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7vc-NB-rPI">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3o-Xk-lMW">
+                                                <rect key="frame" x="13" y="0.0" width="124" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <state key="normal" title="Authentication">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qH0-Pn-z9I"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXR-IV-H71">
+                                                <rect key="frame" x="3" y="50" width="144" height="50"/>
+                                                <state key="normal" title=" touch ID" image="touchID"/>
+                                                <connections>
+                                                    <action selector="touchIDAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="usm-de-gwR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.80115582191780821" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="7S7-Qc-m5X"/>
+                                    <constraint firstItem="7vc-NB-rPI" firstAttribute="top" secondItem="1pZ-j0-KK2" secondAttribute="top" id="a7d-Gi-sCI"/>
+                                    <constraint firstAttribute="bottom" secondItem="7vc-NB-rPI" secondAttribute="bottom" id="cUr-yc-2KJ"/>
+                                    <constraint firstItem="7vc-NB-rPI" firstAttribute="leading" secondItem="1pZ-j0-KK2" secondAttribute="leading" id="dzc-OK-xGc"/>
+                                    <constraint firstAttribute="height" constant="100" id="lok-LV-U7c"/>
+                                    <constraint firstAttribute="trailing" secondItem="7vc-NB-rPI" secondAttribute="trailing" id="wel-UO-pFs"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h6T-Yw-fH6" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="0wJ-7a-4kg"/>
+                            <constraint firstItem="h6T-Yw-fH6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ct8-Is-bSZ"/>
+                            <constraint firstItem="1pZ-j0-KK2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NOA-DF-IzF"/>
+                            <constraint firstItem="h6T-Yw-fH6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zbc-1c-ykJ"/>
+                            <constraint firstItem="h6T-Yw-fH6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="dW2-TS-DZg"/>
+                            <constraint firstItem="1pZ-j0-KK2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oVI-Kq-hap"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Authentication" id="95j-b6-CWX"/>
+                    <connections>
+                        <outlet property="loginButton" destination="e3o-Xk-lMW" id="3mQ-09-eTo"/>
+                        <outlet property="loginView" destination="1pZ-j0-KK2" id="QMd-Mx-WX9"/>
+                        <outlet property="touchIDButton" destination="dXR-IV-H71" id="plZ-k3-ia2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="964" y="36.431784107946029"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wae-hc-hrH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iiA-qa-5iI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xbu-ct-OBk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qF9-iq-iDX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSd-5P-XPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="36.431784107946029"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="molecule" width="571" height="488"/>
+        <image name="touchID" width="71" height="125"/>
+    </resources>
 </document>
