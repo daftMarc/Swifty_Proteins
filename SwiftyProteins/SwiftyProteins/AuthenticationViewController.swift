@@ -12,9 +12,7 @@ import LocalAuthentication
 class AuthenticationViewController: UIViewController {
     
     
-    @IBAction func loginAction(_ sender: UIButton) {
-    }
-    @IBAction func touchIDAction(_ sender: UIButton) {
+    @IBAction func authenticateAction(_ sender: UIButton) {
         self.authenticateUser()
     }
     
@@ -44,19 +42,20 @@ class AuthenticationViewController: UIViewController {
         
         if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
             self.loginButton.isHidden = true
-            myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
-                if success {
-                    self.prepareForLigandTableView()
-                } else {
-                    if let error = evaluateError as? LAError {
-                        DispatchQueue.main.async {
-                            self.displayErrorMessage(error: error)
-                        }
+        } else {
+            self.touchIDButton.isHidden = true
+        }
+        
+        myContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: myLocalizedReasonString) { success, evaluateError in
+            if success {
+                self.prepareForLigandTableView()
+            } else {
+                if let error = evaluateError as? LAError {
+                    DispatchQueue.main.async {
+                        self.displayErrorMessage(error: error)
                     }
                 }
             }
-        } else {
-            self.touchIDButton.isHidden = true
         }
     }
     
@@ -69,7 +68,8 @@ class AuthenticationViewController: UIViewController {
         case LAError.userCancel:
             message = "Authentication was canceled by the user"
         case LAError.userFallback:
-            message = "Authentication was canceled because the user tapped the fallback button"
+            // Authentication with password
+            return
         case LAError.touchIDNotEnrolled:
             message = "Authentication could not start because Touch ID has no enrolled fingers."
         case LAError.passcodeNotSet:

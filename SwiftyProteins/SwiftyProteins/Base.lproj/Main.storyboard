@@ -37,14 +37,14 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qH0-Pn-z9I"/>
+                                                    <action selector="authenticateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fBu-UQ-gXD"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXR-IV-H71">
                                                 <rect key="frame" x="3" y="50" width="144" height="50"/>
                                                 <state key="normal" title=" touch ID" image="touchID"/>
                                                 <connections>
-                                                    <action selector="touchIDAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="usm-de-gwR"/>
+                                                    <action selector="authenticateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qfr-I1-rLo"/>
                                                 </connections>
                                             </button>
                                         </subviews>
