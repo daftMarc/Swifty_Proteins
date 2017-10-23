@@ -9,5 +9,5 @@
 import Foundation
 
 struct Data {
-    static var ligands: [String]!
+    static var proteins: [String]!
 }

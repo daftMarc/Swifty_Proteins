@@ -48,12 +48,10 @@ class AuthenticationViewController: UIViewController {
         
         myContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: myLocalizedReasonString) { success, evaluateError in
             if success {
-                self.prepareForLigandTableView()
+                DispatchQueue.main.async { self.prepareForLigandTableView() }
             } else {
                 if let error = evaluateError as? LAError {
-                    DispatchQueue.main.async {
-                        self.displayErrorMessage(error: error)
-                    }
+                    DispatchQueue.main.async { self.displayErrorMessage(error: error) }
                 }
             }
         }
@@ -97,10 +95,8 @@ class AuthenticationViewController: UIViewController {
     // MARK: - Navigation
     
     func prepareForLigandTableView() {
-        let navController = storyboard?.instantiateViewController(withIdentifier: "navController") as! UINavigationController
-            DispatchQueue.main.async {
-            self.present(navController, animated: true, completion: nil)
-        }
+        let navController = self.storyboard?.instantiateViewController(withIdentifier: "navController") as! UINavigationController
+        self.present(navController, animated: true, completion: nil)
     }
     
 }
