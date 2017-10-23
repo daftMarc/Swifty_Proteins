@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B41213981F9DDD1A00B2CC9D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */; };
+		B412139A1F9DEB3D00B2CC9D /* LigandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41213991F9DEB3D00B2CC9D /* LigandTableViewController.swift */; };
 		B41953991F9A1EB90062FDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41953981F9A1EB90062FDE2 /* AppDelegate.swift */; };
 		B419539E1F9A1EB90062FDE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B419539C1F9A1EB90062FDE2 /* Main.storyboard */; };
 		B41953A01F9A1EB90062FDE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B419539F1F9A1EB90062FDE2 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		A268190E274D3CF364D049E3 /* Pods-SwiftyProteins.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProteins.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProteins/Pods-SwiftyProteins.debug.xcconfig"; sourceTree = "<group>"; };
+		B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		B41213991F9DEB3D00B2CC9D /* LigandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LigandTableViewController.swift; sourceTree = "<group>"; };
 		B41953951F9A1EB90062FDE2 /* SwiftyProteins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyProteins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41953981F9A1EB90062FDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B419539D1F9A1EB90062FDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B41213981F9DDD1A00B2CC9D /* LocalAuthentication.framework in Frameworks */,
 				F32DFBA659C93B78D2A54C7B /* Pods_SwiftyProteins.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +48,7 @@
 		851EAEBC02A23DE96DF16FAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */,
 				D0911FDDA91969CB38A3C5F2 /* Pods_SwiftyProteins.framework */,
 			);
 			name = Frameworks;
@@ -72,6 +78,7 @@
 				B41953981F9A1EB90062FDE2 /* AppDelegate.swift */,
 				B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */,
 				B419539C1F9A1EB90062FDE2 /* Main.storyboard */,
+				B41213991F9DEB3D00B2CC9D /* LigandTableViewController.swift */,
 				B419539F1F9A1EB90062FDE2 /* Assets.xcassets */,
 				B41953A11F9A1EB90062FDE2 /* LaunchScreen.storyboard */,
 				B41953A41F9A1EB90062FDE2 /* Info.plist */,
@@ -218,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B41953AB1F9A522C0062FDE2 /* AuthenticationViewController.swift in Sources */,
+				B412139A1F9DEB3D00B2CC9D /* LigandTableViewController.swift in Sources */,
 				B41953991F9A1EB90062FDE2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

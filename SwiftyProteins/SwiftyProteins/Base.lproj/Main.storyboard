@@ -82,6 +82,34 @@
             </objects>
             <point key="canvasLocation" x="964" y="36.431784107946029"/>
         </scene>
+        <!--Ligand Table View Controller-->
+        <scene sceneID="3NY-hm-iWW">
+            <objects>
+                <tableViewController storyboardIdentifier="Ligand Table View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Odp-f9-DP8" customClass="LigandTableViewController" customModule="SwiftyProteins" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bxk-PV-MtS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FJN-jJ-SXa">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJN-jJ-SXa" id="5t8-Wb-Sk7">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Odp-f9-DP8" id="F5L-y3-Xqk"/>
+                            <outlet property="delegate" destination="Odp-f9-DP8" id="dsB-wH-fxH"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hW0-4a-Ggx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1822" y="36"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="wae-hc-hrH">
             <objects>
