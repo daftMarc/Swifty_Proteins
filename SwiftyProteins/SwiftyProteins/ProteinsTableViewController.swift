@@ -45,9 +45,13 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "proteinCell", for: indexPath) as! ProteinTableViewCell
         
-        cell.textLabel?.text = self.filteredProteins?[indexPath.row]
+        // Design
+        if indexPath.row % 2 == 0 { cell.colors = (UIColor.black, UIColor.white) }
+        else { cell.colors = (UIColor.white, UIColor.black) }
+        
+        cell.proteinName = self.filteredProteins?[indexPath.row]
         
         return cell
     }

@@ -135,7 +135,7 @@
         <scene sceneID="3NY-hm-iWW">
             <objects>
                 <tableViewController storyboardIdentifier="Ligands Table View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Odp-f9-DP8" customClass="ProteinsTableViewController" customModule="SwiftyProteins" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bxk-PV-MtS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="bxk-PV-MtS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -145,13 +145,30 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="FJN-jJ-SXa">
-                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="proteinCell" id="FJN-jJ-SXa" customClass="ProteinTableViewCell" customModule="SwiftyProteins" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJN-jJ-SXa" id="5t8-Wb-Sk7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="protein" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Raz-iD-Vax">
+                                            <rect key="frame" x="0.0" y="-0.5" width="320" height="100"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="Raz-iD-Vax" firstAttribute="height" secondItem="FJN-jJ-SXa" secondAttribute="height" id="7lA-J6-fVu"/>
+                                    <constraint firstItem="Raz-iD-Vax" firstAttribute="centerY" secondItem="FJN-jJ-SXa" secondAttribute="centerY" id="CVY-rc-vr1"/>
+                                    <constraint firstItem="Raz-iD-Vax" firstAttribute="centerX" secondItem="FJN-jJ-SXa" secondAttribute="centerX" id="Ktb-Fq-VvM"/>
+                                    <constraint firstItem="Raz-iD-Vax" firstAttribute="width" secondItem="FJN-jJ-SXa" secondAttribute="width" id="LX3-N6-bkR"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="cellLabel" destination="Raz-iD-Vax" id="kmF-nu-eYp"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

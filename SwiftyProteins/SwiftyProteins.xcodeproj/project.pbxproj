@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9E46AB71F9E43CE00E53522 /* ligands.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9E46AB41F9E43CD00E53522 /* ligands.txt */; };
+		A9E46AB81F9E43CE00E53522 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */; };
+		A9E46AB91F9E43CE00E53522 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46AB61F9E43CE00E53522 /* Data.swift */; };
+		A9E46ABC1F9E505100E53522 /* ProteinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46ABB1F9E505100E53522 /* ProteinsTableViewController.swift */; };
+		A9E46ABE1F9E549600E53522 /* ProteinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46ABD1F9E549600E53522 /* ProteinTableViewCell.swift */; };
 		B41213981F9DDD1A00B2CC9D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */; };
-		B412139A1F9DEB3D00B2CC9D /* LigandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41213991F9DEB3D00B2CC9D /* LigandTableViewController.swift */; };
 		B41953991F9A1EB90062FDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41953981F9A1EB90062FDE2 /* AppDelegate.swift */; };
 		B419539E1F9A1EB90062FDE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B419539C1F9A1EB90062FDE2 /* Main.storyboard */; };
 		B41953A01F9A1EB90062FDE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B419539F1F9A1EB90062FDE2 /* Assets.xcassets */; };
@@ -19,8 +23,12 @@
 
 /* Begin PBXFileReference section */
 		A268190E274D3CF364D049E3 /* Pods-SwiftyProteins.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProteins.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProteins/Pods-SwiftyProteins.debug.xcconfig"; sourceTree = "<group>"; };
+		A9E46AB41F9E43CD00E53522 /* ligands.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ligands.txt; sourceTree = "<group>"; };
+		A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		A9E46AB61F9E43CE00E53522 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		A9E46ABB1F9E505100E53522 /* ProteinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProteinsTableViewController.swift; sourceTree = "<group>"; };
+		A9E46ABD1F9E549600E53522 /* ProteinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProteinTableViewCell.swift; sourceTree = "<group>"; };
 		B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
-		B41213991F9DEB3D00B2CC9D /* LigandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LigandTableViewController.swift; sourceTree = "<group>"; };
 		B41953951F9A1EB90062FDE2 /* SwiftyProteins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyProteins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41953981F9A1EB90062FDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B419539D1F9A1EB90062FDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -54,6 +62,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A9E46ABA1F9E43DD00E53522 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A9E46AB41F9E43CD00E53522 /* ligands.txt */,
+				B419539F1F9A1EB90062FDE2 /* Assets.xcassets */,
+				B41953A11F9A1EB90062FDE2 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		B419538C1F9A1EB90062FDE2 = {
 			isa = PBXGroup;
 			children = (
@@ -76,12 +94,14 @@
 			isa = PBXGroup;
 			children = (
 				B41953981F9A1EB90062FDE2 /* AppDelegate.swift */,
+				A9E46AB61F9E43CE00E53522 /* Data.swift */,
+				A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */,
 				B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */,
+				A9E46ABB1F9E505100E53522 /* ProteinsTableViewController.swift */,
+				A9E46ABD1F9E549600E53522 /* ProteinTableViewCell.swift */,
 				B419539C1F9A1EB90062FDE2 /* Main.storyboard */,
-				B41213991F9DEB3D00B2CC9D /* LigandTableViewController.swift */,
-				B419539F1F9A1EB90062FDE2 /* Assets.xcassets */,
-				B41953A11F9A1EB90062FDE2 /* LaunchScreen.storyboard */,
 				B41953A41F9A1EB90062FDE2 /* Info.plist */,
+				A9E46ABA1F9E43DD00E53522 /* Supporting Files */,
 			);
 			path = SwiftyProteins;
 			sourceTree = "<group>";
@@ -160,6 +180,7 @@
 				B41953A31F9A1EB90062FDE2 /* LaunchScreen.storyboard in Resources */,
 				B41953A01F9A1EB90062FDE2 /* Assets.xcassets in Resources */,
 				B419539E1F9A1EB90062FDE2 /* Main.storyboard in Resources */,
+				A9E46AB71F9E43CE00E53522 /* ligands.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +246,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B41953AB1F9A522C0062FDE2 /* AuthenticationViewController.swift in Sources */,
-				B412139A1F9DEB3D00B2CC9D /* LigandTableViewController.swift in Sources */,
+				A9E46AB91F9E43CE00E53522 /* Data.swift in Sources */,
+				A9E46ABC1F9E505100E53522 /* ProteinsTableViewController.swift in Sources */,
+				A9E46ABE1F9E549600E53522 /* ProteinTableViewCell.swift in Sources */,
+				A9E46AB81F9E43CE00E53522 /* SplashScreenViewController.swift in Sources */,
 				B41953991F9A1EB90062FDE2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
