@@ -97,9 +97,10 @@ class AuthenticationViewController: UIViewController {
     // MARK: - Navigation
     
     func prepareForLigandTableView() {
-        let destinationVC = storyboard?.instantiateViewController(withIdentifier: "Ligand Table View") as! LigandTableViewController
-        
-        DispatchQueue.main.async { self.navigationController?.pushViewController(destinationVC, animated: true) }
+        let navController = storyboard?.instantiateViewController(withIdentifier: "navController") as! UINavigationController
+            DispatchQueue.main.async {
+            self.present(navController, animated: true, completion: nil)
+        }
     }
     
 }
