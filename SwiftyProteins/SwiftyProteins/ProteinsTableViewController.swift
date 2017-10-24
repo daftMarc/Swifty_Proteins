@@ -58,7 +58,7 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let ligand = self.filteredProteins?[indexPath.row] {
-            GetMoleculeInformations(ligand)
+            _ = GetMoleculeInformations(self, ligand)
         }
     }
     
@@ -79,9 +79,13 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
     }
     
     
-    
-    
-    // MARK: - Navigation
-    
+    func displayAlert(_ ligand: String) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        let alertController = UIAlertController(title: "Error", message: "Can't get data for \(ligand)", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
     
 }

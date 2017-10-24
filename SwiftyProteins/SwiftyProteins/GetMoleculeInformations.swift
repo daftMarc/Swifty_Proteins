@@ -12,8 +12,11 @@ import SWXMLHash
 
 class GetMoleculeInformations {
     
+    var delegate: ProteinsTableViewController!
     
-    init(_ ligand: String) {
+    init(_ delegate: ProteinsTableViewController,_ ligand: String) {
+        self.delegate = delegate
+        
         self.getLigandInfo(ligand)
     }
     
@@ -27,14 +30,19 @@ class GetMoleculeInformations {
         let describe = "describeHet"
         
         Alamofire.request(Constants.api + describe, parameters: parameters).response { response in
-            if let data = response.data {
-                let xml = SWXMLHash.parse(data)
-                print("XML = \(xml)")
-                print("SMILES = \(xml["describeHet"]["ligandInfo"]["ligand"]["smiles"].element?.text)")
+            guard let data = response.data else {
+                DispatchQueue.main.async { self.delegate.displayAlert(ligand) }
+                return
             }
+            
+            let xml = SWXMLHash.parse(data)
+            guard let smiles = xml["describeHet"]["ligandInfo"]["ligand"]["smiles"].element?.text else {
+                DispatchQueue.main.async { self.delegate.displayAlert(ligand) }
+                return
+            }
+            print("SMILES = \(smiles)")
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
-    
     
 }
