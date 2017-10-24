@@ -7,5 +7,6 @@ target 'SwiftyProteins' do
 
   # Pods for SwiftyProteins
   pod 'Alamofire'
+  pod 'SWXMLHash'
 
 end

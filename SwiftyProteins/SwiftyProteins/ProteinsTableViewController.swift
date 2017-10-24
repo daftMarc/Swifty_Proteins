@@ -56,6 +56,12 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let ligand = self.filteredProteins?[indexPath.row] {
+            GetMoleculeInformations(ligand)
+        }
+    }
+    
     
     
     
@@ -71,5 +77,11 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
         }
         self.tableView.reloadData()
     }
+    
+    
+    
+    
+    // MARK: - Navigation
+    
     
 }
