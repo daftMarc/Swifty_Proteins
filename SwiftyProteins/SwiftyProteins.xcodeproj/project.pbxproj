@@ -107,8 +107,8 @@
 				A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */,
 				B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */,
 				B419539C1F9A1EB90062FDE2 /* Main.storyboard */,
-				B4BD67981FA094EB003AF625 /* Ligands List Table View */,
 				B4213E1B1F9F8C930088FD26 /* API */,
+				B4BD67981FA094EB003AF625 /* Ligands List Table View */,
 				A9E46ABA1F9E43DD00E53522 /* Supporting Files */,
 			);
 			path = SwiftyProteins;

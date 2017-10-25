@@ -31,71 +31,49 @@ class GetLigandData {
             return
         }
         
-        let ligand = "\(firstChar)/\(ligand)/\(ligand).xml"
+        let ligandURL = "\(firstChar)/\(ligand)/\(ligand).xml"
         
-        Alamofire.request(Constants.api + ligand).response { response in
-            guard let data = response.data else {
+        Alamofire.request(Constants.api + ligandURL).response { response in
+            guard let data = response.data, let code = response.response?.statusCode, code == 200 else {
                 DispatchQueue.main.async { self.delegate.displayAlert(ligand) }
                 return
             }
             
-            self.parseXML(data)
+            self.parseXML(data, ligand)
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
     
-    func parseXML(_ data: Data) {
+    func parseXML(_ data: Data, _ ligand: String) {
         let xml = SWXMLHash.parse(data)
+        var description = Description()
         
-        if let formula = xml["PDBx:datablock"]["PDBx:chem_compCategory"]["PDBx:chem_comp"]["PDBx:formula"].element?.text {
-            print("FORMULA = \(formula)")
-        }
+        description.id = ligand
         
-        if let weight = xml["PDBx:datablock"]["PDBx:chem_compCategory"]["PDBx:chem_comp"]["PDBx:formula_weight"].element?.text {
-            print("WEIGHT = \(weight)")
-        }
-        
-        if let name = xml["PDBx:datablock"]["PDBx:chem_compCategory"]["PDBx:chem_comp"]["PDBx:name"].element?.text {
-            print("NAME = \(name)")
-        }
-        
-        if let type = xml["PDBx:datablock"]["PDBx:chem_compCategory"]["PDBx:chem_comp"]["PDBx:pdbx_type"].element?.text {
-            print("TYPE = \(type)")
-        }
+        if let formula = xml["PDBx:datablock"]["PDBx:chem_compCategory"]["PDBx:chem_comp"]["PDBx:formula"].element?.text { description.formula = formula }
+        if let weight = xml["PDBx:datablock"]["PDBx:chem_compCategory"]["PDBx:chem_comp"]["PDBx:formula_weight"].element?.text { description.weight = weight }
+        if let name = xml["PDBx:datablock"]["PDBx:chem_compCategory"]["PDBx:chem_comp"]["PDBx:name"].element?.text { description.name = name }
+        if let type = xml["PDBx:datablock"]["PDBx:chem_compCategory"]["PDBx:chem_comp"]["PDBx:pdbx_type"].element?.text {description.type = type}
         
         do {
-            if let smiles = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_descriptorCategory"]["PDBx:pdbx_chem_comp_descriptor"].withAttribute("type", "SMILES")["PDBx:descriptor"].element?.text {
-                print("SMILES = \(smiles)")
-            }
-        } catch {
-            print("Can't get SMILES")
-        }
+            if let smiles = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_descriptorCategory"]["PDBx:pdbx_chem_comp_descriptor"].withAttribute("type", "SMILES")["PDBx:descriptor"].element?.text { description.smiles = smiles }
+        } catch { print("Can't get SMILES") }
         
         do {
-            if let identifiers = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_identifierCategory"]["PDBx:pdbx_chem_comp_identifier"].withAttribute("type", "SYSTEMATIC NAME")["PDBx:identifier"].element?.text {
-                print("identifiers = \(identifiers)")
-            }
-        } catch {
-            print("Can't get identifiers")
-        }
+            if let identifiers = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_identifierCategory"]["PDBx:pdbx_chem_comp_identifier"].withAttribute("type", "SYSTEMATIC NAME")["PDBx:identifier"].element?.text { description.identifiers = identifiers }
+        } catch { print("Can't get identifiers") }
         
         do {
-            if let inChI = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_descriptorCategory"]["PDBx:pdbx_chem_comp_descriptor"].withAttribute("type", "InChI")["PDBx:descriptor"].element?.text {
-                print("inChI = \(inChI)")
-            }
-        } catch {
-            print("Can't get InChI")
-        }
+            if let inChI = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_descriptorCategory"]["PDBx:pdbx_chem_comp_descriptor"].withAttribute("type", "InChI")["PDBx:descriptor"].element?.text { description.InChI = inChI }
+        } catch { print("Can't get InChI") }
         
         do {
-            if let inChIKey = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_descriptorCategory"]["PDBx:pdbx_chem_comp_descriptor"].withAttribute("type", "InChIKey")["PDBx:descriptor"].element?.text {
-                print("inChIKey = \(inChIKey)")
-            }
-        } catch {
-            print("Can't get InChIKey")
-        }
+            if let inChIKey = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_descriptorCategory"]["PDBx:pdbx_chem_comp_descriptor"].withAttribute("type", "InChIKey")["PDBx:descriptor"].element?.text { description.InChIKey = inChIKey }
+        } catch { print("Can't get InChIKey") }
+        
+        print(description)
     }
     
 }
