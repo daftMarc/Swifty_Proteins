@@ -9,5 +9,5 @@
 import Foundation
 
 struct Constants {
-    static let api = "https://www.rcsb.org/pdb/rest/"
+    static let api = "http://ligand-expo.rcsb.org/reports/"
 }
