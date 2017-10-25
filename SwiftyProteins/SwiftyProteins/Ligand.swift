@@ -32,14 +32,25 @@ struct Description: CustomStringConvertible {
 }
 
 
-struct Atom {
+struct Atom: CustomStringConvertible {
+    
     var name: String?
     var number: Int?
+    var conect: [Int]?
     var coord: Coordinates?
+    
+    var description: String {
+        return "\nname = \(String(describing: name))\nnumber = \(String(describing: number))\ncoor = \(String(describing: coord))\nconect = \(String(describing: conect))"
+    }
 }
 
-struct Coordinates {
+struct Coordinates: CustomStringConvertible {
+    
     var x: Double?
     var y: Double?
     var z: Double?
+    
+    var description: String {
+        return "\nx = \(String(describing: x))\ny = \(String(describing: y))\nz = \(String(describing: z))"
+    }
 }

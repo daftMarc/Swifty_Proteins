@@ -70,7 +70,6 @@ class GetLigandData {
             if let inChIKey = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_descriptorCategory"]["PDBx:pdbx_chem_comp_descriptor"].withAttribute("type", "InChIKey")["PDBx:descriptor"].element?.text { description.InChIKey = inChIKey }
         } catch { print("Can't get InChIKey") }
         
-        print(description)
         self.getLigandPDB(ligand, firstChar, description)
     }
     
@@ -93,50 +92,83 @@ class GetLigandData {
         ligand.description = description
         
         var content = PDB.components(separatedBy: "\n")
-        content.removeLast()
-        content.removeLast()
-        
-        var all = [[String]]()
+        var filteredContent = [[String]]()
         
         for (i, element) in content.enumerated() {
             content[i] = element.condenseWhitespace()
-            all.append(content[i].components(separatedBy: " "))
+            filteredContent.append(content[i].components(separatedBy: " "))
         }
         
         
+        var atoms = [[String]]()
+        var conects = [[String]]()
+        
+        for element in filteredContent {
+            if element[0] == "ATOM" {
+                atoms.append(element)
+            } else if element[0] == "CONECT" {
+                conects.append(element)
+            }
+        }
+        
+        ligand.atoms = self.getAtomsArray(atoms)
+        self.fillAtomsConects(ligand, conects)
+    }
+    
+    func getAtomsArray(_ atomsData: [[String]]) -> [Atom] {
+        var atoms = [Atom]()
         var atom: Atom
         var coordinates: Coordinates
         
-        for atoms in all {
+        for elements in atomsData {
             atom = Atom()
             coordinates = Coordinates()
             
-            for (i, element) in atoms.enumerated() {
+            for (i, element) in elements.enumerated() {
                 if i == 1 {
-                    if let number = Int(element) {
-                        atom.number = number
-                    }
+                    if let number = Int(element) { atom.number = number }
                 } else if i == 6 {
-                    if let x = Double(element) {
-                        coordinates.x = x
-                    }
+                    if let x = Double(element) { coordinates.x = x }
                 } else if i == 7 {
-                    if let y = Double(element) {
-                        coordinates.y = y
-                    }
+                    if let y = Double(element) { coordinates.y = y }
                 } else if i == 8 {
                     if let z = Double(element) {
                         coordinates.z = z
                         atom.coord = coordinates
                     }
-                } else if i == 11 {
-                    atom.name = element
-                }
+                } else if i == 11 { atom.name = element }
             }
             
-            ligand.atoms?.append(atom)
+            atoms.append(atom)
         }
-        print("LIGAND = \(ligand)")
+        return atoms
+    }
+    
+    func fillAtomsConects(_ ligand: Ligand, _ conects: [[String]]) {
+//        print("CONECTS = \(conects)")
+        var identifier: Int?
+        var atom: Atom?
+        
+        for conect in conects {
+            identifier = 0
+            for (i, element) in conect.enumerated() {
+                if i == 1 {
+                    if let index = Int(element) {
+                        identifier = index
+                        if let spec = ligand.atoms?[index - 1] {
+                            atom = spec
+                        }
+                    }
+                } else if i > 1 {
+                    if identifier != nil, atom != nil {
+                        
+                    }
+                }
+            }
+        }
+        
+        
+//        print("LIGAND = \(ligand)")
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
