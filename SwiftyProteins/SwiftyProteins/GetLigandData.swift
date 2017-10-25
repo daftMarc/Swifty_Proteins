@@ -112,7 +112,7 @@ class GetLigandData {
         }
         
         ligand.atoms = self.getAtomsArray(atoms)
-        self.fillAtomsConects(ligand, conects)
+        self.fillAtomsConects(&ligand, conects)
     }
     
     func getAtomsArray(_ atomsData: [[String]]) -> [Atom] {
@@ -144,31 +144,39 @@ class GetLigandData {
         return atoms
     }
     
-    func fillAtomsConects(_ ligand: Ligand, _ conects: [[String]]) {
-//        print("CONECTS = \(conects)")
-        var identifier: Int?
+    func fillAtomsConects(_ ligand: inout Ligand, _ conects: [[String]]) {
+        var id: Int?
         var atom: Atom?
         
         for conect in conects {
-            identifier = 0
+            id = nil
+            atom = nil
+            
             for (i, element) in conect.enumerated() {
                 if i == 1 {
                     if let index = Int(element) {
-                        identifier = index
+                        id = index
                         if let spec = ligand.atoms?[index - 1] {
                             atom = spec
+                            atom?.conect = [Int]()
                         }
                     }
                 } else if i > 1 {
-                    if identifier != nil, atom != nil {
-                        
+                    if id != nil, atom != nil {
+                        if let connexion = Int(element) {
+                            atom?.conect?.append(connexion)
+                        }
                     }
                 }
             }
+            ligand.atoms?[id! - 1].conect = atom?.conect
+            id = nil
+            atom = nil
         }
         
-        
-//        print("LIGAND = \(ligand)")
+        for elem in ligand.atoms! {
+            print(elem.conect)
+        }
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
