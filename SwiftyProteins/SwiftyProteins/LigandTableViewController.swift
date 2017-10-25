@@ -17,6 +17,8 @@ class LigandTableViewController: UITableViewController, UISearchResultsUpdating 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.definesPresentationContext = true
+        
         self.filteredProteins = Ressources.ligands
         
         // Setup the Search Controller
@@ -58,6 +60,7 @@ class LigandTableViewController: UITableViewController, UISearchResultsUpdating 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let ligand = self.filteredProteins?[indexPath.row] {
+            self.tableView.isUserInteractionEnabled = false
             _ = GetLigandData(self, ligand)
         }
     }
@@ -80,12 +83,24 @@ class LigandTableViewController: UITableViewController, UISearchResultsUpdating 
     
     
     func displayAlert(_ ligand: String) {
+        self.tableView.isUserInteractionEnabled = true
+        
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         let alertController = UIAlertController(title: "Error", message: "Can't get data for \(ligand)", preferredStyle: UIAlertControllerStyle.alert)
         
         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel))
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func prepareForSceneKit() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        self.tableView.isUserInteractionEnabled = true
+        
+        let destinationvc = storyboard?.instantiateViewController(withIdentifier: "SceneKit View")
+        
+        self.navigationController?.pushViewController(destinationvc!, animated: true)
     }
     
 }

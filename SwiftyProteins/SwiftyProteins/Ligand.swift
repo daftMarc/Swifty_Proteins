@@ -13,7 +13,7 @@ struct Ligand {
     var description: Description?
 }
 
-struct Description: CustomStringConvertible {
+struct Description {
     
     var id: String?
     var formula: String?
@@ -25,32 +25,22 @@ struct Description: CustomStringConvertible {
     var InChI: String?
     var InChIKey: String?
     
-    var description: String {
-        return "id = \(String(describing: id))\nformula = \(String(describing: formula))\nweight = \(String(describing: weight))\nname = \(String(describing: name))\ntype = \(String(describing: type))\nsmiles = \(String(describing: smiles))\nidentifiers = \(String(describing: identifiers))\nInChI = \(String(describing: InChI))\nInChIKey = \(String(describing: InChIKey))"
-    }
-    
 }
 
 
-struct Atom: CustomStringConvertible {
+struct Atom {
     
     var name: String?
     var number: Int?
     var conect = [Int]()
     var coord = Coordinates()
     
-    var description: String {
-        return "\nname = \(String(describing: name))\nnumber = \(String(describing: number))\ncoor = \(String(describing: coord))\nconect = \(String(describing: conect))"
-    }
 }
 
-struct Coordinates: CustomStringConvertible {
+struct Coordinates {
     
     var x: Double?
     var y: Double?
     var z: Double?
     
-    var description: String {
-        return "\nx = \(String(describing: x))\ny = \(String(describing: y))\nz = \(String(describing: z))"
-    }
 }

@@ -97,17 +97,17 @@ class GetLigandData {
             if element[0] == "ATOM" {
                 ligand.atoms.append(Atom())
                 
-                guard ligand.atoms.indices.contains(i) else {
+                guard ligand.atoms.indices.contains(i), let number = Int(element[1]), let x = Double(element[6]), let y = Double(element[7]), let z = Double(element[8]) else {
                     DispatchQueue.main.async { self.delegate.displayAlert(ligand.description?.id ?? "this protein") }
                     return
                 }
                 
-                if let number = Int(element[1]) { ligand.atoms[i].number = number }
-                if let x = Double(element[6]) { ligand.atoms[i].coord.x = x }
-                if let y = Double(element[7]) { ligand.atoms[i].coord.y = y }
-                if let z = Double(element[8]) { ligand.atoms[i].coord.z = z }
-                
+                ligand.atoms[i].number = number
+                ligand.atoms[i].coord.x = x
+                ligand.atoms[i].coord.y = y
+                ligand.atoms[i].coord.z = z
                 ligand.atoms[i].name = element[11]
+                
             } else if element[0] == "CONECT" {
                 for (j, conect) in element.enumerated() {
                     if j > 1, let con = Int(conect), let index = Int(element[1]) {
@@ -123,8 +123,7 @@ class GetLigandData {
             }
         }
         
-        print("ligand = \(ligand)")
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        DispatchQueue.main.async { self.delegate.prepareForSceneKit() }
     }
     
     func getFormattedPDB(_ PDB: String) -> [[String]] {
