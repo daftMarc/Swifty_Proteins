@@ -1,18 +1,14 @@
 //
-//  Data.swift
+//  Ligand.swift
 //  SwiftyProteins
 //
-//  Created by Marc FAMILARI on 10/23/17.
+//  Created by Marc FAMILARI on 10/25/17.
 //  Copyright © 2017 Marc FAMILARI. All rights reserved.
 //
 
 import Foundation
 
-struct Data {
-    static var proteins: [String]!
-}
-
-struct Molecule {
+struct Ligand {
     static var atoms: [Atom]?
 }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Rw-0V-KeU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Rw-0V-KeU">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -134,7 +134,7 @@
         <!--Proteins-->
         <scene sceneID="3NY-hm-iWW">
             <objects>
-                <tableViewController storyboardIdentifier="Ligands Table View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Odp-f9-DP8" customClass="ProteinsTableViewController" customModule="SwiftyProteins" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Ligands Table View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Odp-f9-DP8" customClass="LigandTableViewController" customModule="SwiftyProteins" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="bxk-PV-MtS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,11 +145,11 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="proteinCell" id="FJN-jJ-SXa" customClass="ProteinTableViewCell" customModule="SwiftyProteins" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ligandCell" id="FJN-jJ-SXa" customClass="LigandTableViewCell" customModule="SwiftyProteins" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJN-jJ-SXa" id="5t8-Wb-Sk7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="protein" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Raz-iD-Vax">
@@ -167,7 +167,7 @@
                                     <constraint firstItem="Raz-iD-Vax" firstAttribute="width" secondItem="FJN-jJ-SXa" secondAttribute="width" id="LX3-N6-bkR"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="cellLabel" destination="Raz-iD-Vax" id="kmF-nu-eYp"/>
+                                    <outlet property="cellLabel" destination="Raz-iD-Vax" id="thZ-wD-WjP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

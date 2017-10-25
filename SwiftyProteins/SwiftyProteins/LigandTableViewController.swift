@@ -1,14 +1,14 @@
 //
-//  ProteinsTableViewController.swift
+//  LigandTableViewController.swift
 //  SwiftyProteins
 //
-//  Created by Marc FAMILARI on 23/10/2017.
+//  Created by Marc FAMILARI on 10/25/17.
 //  Copyright © 2017 Marc FAMILARI. All rights reserved.
 //
 
 import UIKit
 
-class ProteinsTableViewController: UITableViewController, UISearchResultsUpdating {
+class LigandTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var filteredProteins: [String]?
     let searchController = UISearchController(searchResultsController: nil)
@@ -17,7 +17,7 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.filteredProteins = Data.proteins
+        self.filteredProteins = Ressources.ligands
         
         // Setup the Search Controller
         self.searchController.searchResultsUpdater = self
@@ -45,7 +45,7 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "proteinCell", for: indexPath) as! ProteinTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ligandCell", for: indexPath) as! LigandTableViewCell
         
         // Design
         if indexPath.row % 2 == 0 { cell.colors = (UIColor.black, UIColor.white) }
@@ -58,7 +58,7 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let ligand = self.filteredProteins?[indexPath.row] {
-            _ = GetMoleculeInformations(self, ligand)
+            _ = GetLigandData(self, ligand)
         }
     }
     
@@ -69,11 +69,11 @@ class ProteinsTableViewController: UITableViewController, UISearchResultsUpdatin
     
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
-            self.filteredProteins = Data.proteins.filter { protein in
+            self.filteredProteins = Ressources.ligands.filter { protein in
                 return protein.lowercased().contains(searchText.lowercased())
             }
         } else {
-            self.filteredProteins = Data.proteins
+            self.filteredProteins = Ressources.ligands
         }
         self.tableView.reloadData()
     }

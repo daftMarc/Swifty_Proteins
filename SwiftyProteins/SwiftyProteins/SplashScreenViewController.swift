@@ -25,7 +25,7 @@ class SplashScreenViewController: UIViewController {
         
         if let path = Bundle.main.path(forResource: "ligands", ofType: "txt") {
             if let data = try? String(contentsOfFile: path, encoding: .utf8) {
-                Data.proteins = data.characters.split{$0 == "\n"}.map(String.init)
+                Ressources.ligands = data.characters.split{$0 == "\n"}.map(String.init)
                 let destinationVC = storyboard?.instantiateViewController(withIdentifier: "Authentication View Controller") as! AuthenticationViewController
                 self.present(destinationVC, animated: true, completion: nil)
             } else {

@@ -1,14 +1,14 @@
 //
-//  ProteinTableViewCell.swift
+//  LigandTableViewCell.swift
 //  SwiftyProteins
 //
-//  Created by Marc FAMILARI on 23/10/2017.
+//  Created by Marc FAMILARI on 10/25/17.
 //  Copyright © 2017 Marc FAMILARI. All rights reserved.
 //
 
 import UIKit
 
-class ProteinTableViewCell: UITableViewCell {
+class LigandTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var cellLabel: UILabel!

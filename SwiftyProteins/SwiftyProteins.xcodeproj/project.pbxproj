@@ -9,17 +9,18 @@
 /* Begin PBXBuildFile section */
 		A9E46AB71F9E43CE00E53522 /* ligands.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9E46AB41F9E43CD00E53522 /* ligands.txt */; };
 		A9E46AB81F9E43CE00E53522 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */; };
-		A9E46AB91F9E43CE00E53522 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46AB61F9E43CE00E53522 /* Data.swift */; };
-		A9E46ABC1F9E505100E53522 /* ProteinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46ABB1F9E505100E53522 /* ProteinsTableViewController.swift */; };
-		A9E46ABE1F9E549600E53522 /* ProteinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46ABD1F9E549600E53522 /* ProteinTableViewCell.swift */; };
 		B41213981F9DDD1A00B2CC9D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */; };
 		B41953991F9A1EB90062FDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41953981F9A1EB90062FDE2 /* AppDelegate.swift */; };
 		B419539E1F9A1EB90062FDE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B419539C1F9A1EB90062FDE2 /* Main.storyboard */; };
 		B41953A01F9A1EB90062FDE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B419539F1F9A1EB90062FDE2 /* Assets.xcassets */; };
 		B41953A31F9A1EB90062FDE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41953A11F9A1EB90062FDE2 /* LaunchScreen.storyboard */; };
 		B41953AB1F9A522C0062FDE2 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */; };
-		B4213E1A1F9F8C8D0088FD26 /* GetMoleculeInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4213E191F9F8C8D0088FD26 /* GetMoleculeInformations.swift */; };
 		B4213E1D1F9F8D6E0088FD26 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4213E1C1F9F8D6E0088FD26 /* Constants.swift */; };
+		B4BD67911FA092DE003AF625 /* GetLigandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD67901FA092DE003AF625 /* GetLigandData.swift */; };
+		B4BD67931FA0936F003AF625 /* Ressources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD67921FA0936F003AF625 /* Ressources.swift */; };
+		B4BD67951FA093F9003AF625 /* LigandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD67941FA093F9003AF625 /* LigandTableViewController.swift */; };
+		B4BD67971FA0940B003AF625 /* LigandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD67961FA0940B003AF625 /* LigandTableViewCell.swift */; };
+		B4BD679A1FA0951A003AF625 /* Ligand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD67991FA0951A003AF625 /* Ligand.swift */; };
 		F32DFBA659C93B78D2A54C7B /* Pods_SwiftyProteins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0911FDDA91969CB38A3C5F2 /* Pods_SwiftyProteins.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,9 +28,6 @@
 		A268190E274D3CF364D049E3 /* Pods-SwiftyProteins.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProteins.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProteins/Pods-SwiftyProteins.debug.xcconfig"; sourceTree = "<group>"; };
 		A9E46AB41F9E43CD00E53522 /* ligands.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ligands.txt; sourceTree = "<group>"; };
 		A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
-		A9E46AB61F9E43CE00E53522 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		A9E46ABB1F9E505100E53522 /* ProteinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProteinsTableViewController.swift; sourceTree = "<group>"; };
-		A9E46ABD1F9E549600E53522 /* ProteinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProteinTableViewCell.swift; sourceTree = "<group>"; };
 		B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		B41953951F9A1EB90062FDE2 /* SwiftyProteins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyProteins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41953981F9A1EB90062FDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,8 +36,12 @@
 		B41953A21F9A1EB90062FDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B41953A41F9A1EB90062FDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
-		B4213E191F9F8C8D0088FD26 /* GetMoleculeInformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMoleculeInformations.swift; sourceTree = "<group>"; };
 		B4213E1C1F9F8D6E0088FD26 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B4BD67901FA092DE003AF625 /* GetLigandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetLigandData.swift; sourceTree = "<group>"; };
+		B4BD67921FA0936F003AF625 /* Ressources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ressources.swift; sourceTree = "<group>"; };
+		B4BD67941FA093F9003AF625 /* LigandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LigandTableViewController.swift; sourceTree = "<group>"; };
+		B4BD67961FA0940B003AF625 /* LigandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LigandTableViewCell.swift; sourceTree = "<group>"; };
+		B4BD67991FA0951A003AF625 /* Ligand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ligand.swift; sourceTree = "<group>"; };
 		D0911FDDA91969CB38A3C5F2 /* Pods_SwiftyProteins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyProteins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD0894E839427F2D4C3C701B /* Pods-SwiftyProteins.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProteins.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProteins/Pods-SwiftyProteins.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,13 +101,13 @@
 			isa = PBXGroup;
 			children = (
 				B41953981F9A1EB90062FDE2 /* AppDelegate.swift */,
-				A9E46AB61F9E43CE00E53522 /* Data.swift */,
+				B4BD67991FA0951A003AF625 /* Ligand.swift */,
+				B4BD67921FA0936F003AF625 /* Ressources.swift */,
 				B4213E1C1F9F8D6E0088FD26 /* Constants.swift */,
 				A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */,
 				B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */,
-				A9E46ABB1F9E505100E53522 /* ProteinsTableViewController.swift */,
-				A9E46ABD1F9E549600E53522 /* ProteinTableViewCell.swift */,
 				B419539C1F9A1EB90062FDE2 /* Main.storyboard */,
+				B4BD67981FA094EB003AF625 /* Ligands List Table View */,
 				B4213E1B1F9F8C930088FD26 /* API */,
 				A9E46ABA1F9E43DD00E53522 /* Supporting Files */,
 			);
@@ -115,9 +117,18 @@
 		B4213E1B1F9F8C930088FD26 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				B4213E191F9F8C8D0088FD26 /* GetMoleculeInformations.swift */,
+				B4BD67901FA092DE003AF625 /* GetLigandData.swift */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		B4BD67981FA094EB003AF625 /* Ligands List Table View */ = {
+			isa = PBXGroup;
+			children = (
+				B4BD67941FA093F9003AF625 /* LigandTableViewController.swift */,
+				B4BD67961FA0940B003AF625 /* LigandTableViewCell.swift */,
+			);
+			name = "Ligands List Table View";
 			sourceTree = "<group>";
 		};
 		E6326940FF2C2B029873752B /* Pods */ = {
@@ -261,13 +272,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4BD67951FA093F9003AF625 /* LigandTableViewController.swift in Sources */,
 				B41953AB1F9A522C0062FDE2 /* AuthenticationViewController.swift in Sources */,
-				A9E46AB91F9E43CE00E53522 /* Data.swift in Sources */,
-				A9E46ABC1F9E505100E53522 /* ProteinsTableViewController.swift in Sources */,
-				B4213E1A1F9F8C8D0088FD26 /* GetMoleculeInformations.swift in Sources */,
-				A9E46ABE1F9E549600E53522 /* ProteinTableViewCell.swift in Sources */,
+				B4BD67931FA0936F003AF625 /* Ressources.swift in Sources */,
+				B4BD67911FA092DE003AF625 /* GetLigandData.swift in Sources */,
 				A9E46AB81F9E43CE00E53522 /* SplashScreenViewController.swift in Sources */,
+				B4BD679A1FA0951A003AF625 /* Ligand.swift in Sources */,
 				B41953991F9A1EB90062FDE2 /* AppDelegate.swift in Sources */,
+				B4BD67971FA0940B003AF625 /* LigandTableViewCell.swift in Sources */,
 				B4213E1D1F9F8D6E0088FD26 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
