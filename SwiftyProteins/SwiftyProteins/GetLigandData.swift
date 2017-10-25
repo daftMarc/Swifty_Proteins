@@ -88,6 +88,46 @@ class GetLigandData {
     }
     
     func parsePDB(_ PDB: String, _ description: Description) {
+        let formattedContent = self.getFormattedPDB(PDB)
+        
+        var ligand = Ligand()
+        ligand.description = description
+        
+        for (i, element) in formattedContent.enumerated() {
+            if element[0] == "ATOM" {
+                ligand.atoms.append(Atom())
+                
+                guard ligand.atoms.indices.contains(i) else {
+                    DispatchQueue.main.async { self.delegate.displayAlert(ligand.description?.id ?? "this protein") }
+                    return
+                }
+                
+                if let number = Int(element[1]) { ligand.atoms[i].number = number }
+                if let x = Double(element[6]) { ligand.atoms[i].coord.x = x }
+                if let y = Double(element[7]) { ligand.atoms[i].coord.y = y }
+                if let z = Double(element[8]) { ligand.atoms[i].coord.z = z }
+                
+                ligand.atoms[i].name = element[11]
+            } else if element[0] == "CONECT" {
+                for (j, conect) in element.enumerated() {
+                    if j > 1, let con = Int(conect), let index = Int(element[1]) {
+                        
+                        guard ligand.atoms.indices.contains(index - 1) else {
+                            DispatchQueue.main.async { self.delegate.displayAlert(ligand.description?.id ?? "this protein") }
+                            return
+                        }
+                        
+                        ligand.atoms[index - 1].conect.append(con)
+                    }
+                }
+            }
+        }
+        
+        print("ligand = \(ligand)")
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+    func getFormattedPDB(_ PDB: String) -> [[String]] {
         var content = PDB.components(separatedBy: "\n")
         var formattedContent = [[String]]()
         
@@ -96,33 +136,7 @@ class GetLigandData {
             formattedContent.append(content[i].components(separatedBy: " "))
         }
         
-        var ligand = Ligand()
-        ligand.description = description
-        ligand.atoms = [Atom]()
-        
-        for (i, element) in formattedContent.enumerated() {
-            if element[0] == "ATOM" {
-                ligand.atoms?.append(Atom())
-                ligand.atoms?[i].coord = Coordinates()
-                ligand.atoms?[i].conect = [Int]()
-                
-                if let number = Int(element[1]) { ligand.atoms?[i].number = number }
-                if let x = Double(element[6]) { ligand.atoms?[i].coord?.x = x }
-                if let y = Double(element[7]) { ligand.atoms?[i].coord?.y = y }
-                if let z = Double(element[8]) { ligand.atoms?[i].coord?.z = z }
-                
-                ligand.atoms?[i].name = element[11]
-            } else if element[0] == "CONECT" {
-                for (j, conect) in element.enumerated() {
-                    if j > 1, let con = Int(conect), let index = Int(element[1]) {
-                        ligand.atoms?[index - 1].conect?.append(con)
-                    }
-                }
-            }
-        }
-        
-        print("ligand = \(ligand)")
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        return formattedContent
     }
     
 }

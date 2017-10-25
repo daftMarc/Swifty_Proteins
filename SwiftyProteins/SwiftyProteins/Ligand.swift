@@ -9,7 +9,7 @@
 import Foundation
 
 struct Ligand {
-    var atoms: [Atom]?
+    var atoms =  [Atom]()
     var description: Description?
 }
 
@@ -36,8 +36,8 @@ struct Atom: CustomStringConvertible {
     
     var name: String?
     var number: Int?
-    var conect: [Int]?
-    var coord: Coordinates?
+    var conect = [Int]()
+    var coord = Coordinates()
     
     var description: String {
         return "\nname = \(String(describing: name))\nnumber = \(String(describing: number))\ncoor = \(String(describing: coord))\nconect = \(String(describing: conect))"
