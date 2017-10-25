@@ -97,7 +97,7 @@ class GetLigandData {
             if element[0] == "ATOM" {
                 ligand.atoms.append(Atom())
                 
-                guard ligand.atoms.indices.contains(i), let number = Int(element[1]), let x = Double(element[6]), let y = Double(element[7]), let z = Double(element[8]) else {
+                guard ligand.atoms.indices.contains(i), let number = Int(element[1]), let x = Double(element[6]), let y = Double(element[7]), let z = Double(element[8]), element.indices.contains(11) else {
                     DispatchQueue.main.async { self.delegate.displayAlert(ligand.description?.id ?? "this protein") }
                     return
                 }
