@@ -39,14 +39,11 @@ class GetLigandData {
                 return
             }
             
-            self.parseXML(data, ligand)
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            self.parseXML(data, ligand, firstChar)
         }
     }
     
-    
-    func parseXML(_ data: Data, _ ligand: String) {
+    func parseXML(_ data: Data, _ ligand: String, _ firstChar: String) {
         let xml = SWXMLHash.parse(data)
         var description = Description()
         
@@ -74,6 +71,73 @@ class GetLigandData {
         } catch { print("Can't get InChIKey") }
         
         print(description)
+        self.getLigandPDB(ligand, firstChar, description)
+    }
+    
+    
+    func getLigandPDB(_ ligand: String, _ firstChar: String, _ description: Description) {
+        let ligandURL = "\(firstChar)/\(ligand)/\(ligand)_ideal.pdb"
+        
+        Alamofire.request(Constants.api + ligandURL).responseString { response in
+            guard let data = response.data, let PDB = String(data: data, encoding: .utf8), let code = response.response?.statusCode, code == 200 else {
+                DispatchQueue.main.async { self.delegate.displayAlert(ligand) }
+                return
+            }
+            
+            self.parsePDB(PDB, description)
+        }
+    }
+    
+    func parsePDB(_ PDB: String, _ description: Description) {
+        var ligand = Ligand()
+        ligand.description = description
+        
+        var content = PDB.components(separatedBy: "\n")
+        content.removeLast()
+        content.removeLast()
+        
+        var all = [[String]]()
+        
+        for (i, element) in content.enumerated() {
+            content[i] = element.condenseWhitespace()
+            all.append(content[i].components(separatedBy: " "))
+        }
+        
+        
+        var atom: Atom
+        var coordinates: Coordinates
+        
+        for atoms in all {
+            atom = Atom()
+            coordinates = Coordinates()
+            
+            for (i, element) in atoms.enumerated() {
+                if i == 1 {
+                    if let number = Int(element) {
+                        atom.number = number
+                    }
+                } else if i == 6 {
+                    if let x = Double(element) {
+                        coordinates.x = x
+                    }
+                } else if i == 7 {
+                    if let y = Double(element) {
+                        coordinates.y = y
+                    }
+                } else if i == 8 {
+                    if let z = Double(element) {
+                        coordinates.z = z
+                        atom.coord = coordinates
+                    }
+                } else if i == 11 {
+                    atom.name = element
+                }
+            }
+            
+            ligand.atoms?.append(atom)
+        }
+        print("LIGAND = \(ligand)")
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
 }

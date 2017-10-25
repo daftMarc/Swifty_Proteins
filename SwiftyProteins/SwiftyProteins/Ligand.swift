@@ -9,8 +9,8 @@
 import Foundation
 
 struct Ligand {
-    static var atoms: [Atom]?
-    var description: Description
+    var atoms: [Atom]?
+    var description: Description?
 }
 
 struct Description: CustomStringConvertible {
@@ -33,14 +33,13 @@ struct Description: CustomStringConvertible {
 
 
 struct Atom {
-    static var name: String?
-    static var number: Int?
-    static var ligand: String?
-    var coord: Coordinates
+    var name: String?
+    var number: Int?
+    var coord: Coordinates?
 }
 
 struct Coordinates {
-    static var x: Double?
-    static var y: Double?
-    static var z: Double?
+    var x: Double?
+    var y: Double?
+    var z: Double?
 }
