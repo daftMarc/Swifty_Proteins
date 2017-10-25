@@ -88,26 +88,23 @@ class GetLigandData {
     }
     
     func parsePDB(_ PDB: String, _ description: Description) {
-        var ligand = Ligand()
-        ligand.description = description
-        
         var content = PDB.components(separatedBy: "\n")
-        var filteredContent = [[String]]()
+        var formattedContent = [[String]]()
         
         for (i, element) in content.enumerated() {
             content[i] = element.condenseWhitespace()
-            filteredContent.append(content[i].components(separatedBy: " "))
+            formattedContent.append(content[i].components(separatedBy: " "))
         }
         
-        
-        var conects = [[String]]()
-        
+        var ligand = Ligand()
+        ligand.description = description
         ligand.atoms = [Atom]()
         
-        for (i, element) in filteredContent.enumerated() {
+        for (i, element) in formattedContent.enumerated() {
             if element[0] == "ATOM" {
                 ligand.atoms?.append(Atom())
                 ligand.atoms?[i].coord = Coordinates()
+                ligand.atoms?[i].conect = [Int]()
                 
                 if let number = Int(element[1]) { ligand.atoms?[i].number = number }
                 if let x = Double(element[6]) { ligand.atoms?[i].coord?.x = x }
@@ -116,46 +113,15 @@ class GetLigandData {
                 
                 ligand.atoms?[i].name = element[11]
             } else if element[0] == "CONECT" {
-                conects.append(element)
+                for (j, conect) in element.enumerated() {
+                    if j > 1, let con = Int(conect), let index = Int(element[1]) {
+                        ligand.atoms?[index - 1].conect?.append(con)
+                    }
+                }
             }
         }
         
         print("ligand = \(ligand)")
-    }
-    
-    func fillAtomsConects(_ ligand: inout Ligand, _ conects: [[String]]) {
-        var id: Int?
-        var atom: Atom?
-        
-        for conect in conects {
-            id = nil
-            atom = nil
-            
-            for (i, element) in conect.enumerated() {
-                if i == 1 {
-                    if let index = Int(element) {
-                        id = index
-                        if let spec = ligand.atoms?[index - 1] {
-                            atom = spec
-                            atom?.conect = [Int]()
-                        }
-                    }
-                } else if i > 1 {
-                    if id != nil, atom != nil {
-                        if let connexion = Int(element) {
-                            atom?.conect?.append(connexion)
-                        }
-                    }
-                }
-            }
-            ligand.atoms?[id! - 1].conect = atom?.conect
-            id = nil
-            atom = nil
-        }
-        
-        for elem in ligand.atoms! {
-            print(elem.conect)
-        }
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
