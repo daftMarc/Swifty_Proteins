@@ -100,48 +100,27 @@ class GetLigandData {
         }
         
         
-        var atoms = [[String]]()
         var conects = [[String]]()
         
-        for element in filteredContent {
+        ligand.atoms = [Atom]()
+        
+        for (i, element) in filteredContent.enumerated() {
             if element[0] == "ATOM" {
-                atoms.append(element)
+                ligand.atoms?.append(Atom())
+                ligand.atoms?[i].coord = Coordinates()
+                
+                if let number = Int(element[1]) { ligand.atoms?[i].number = number }
+                if let x = Double(element[6]) { ligand.atoms?[i].coord?.x = x }
+                if let y = Double(element[7]) { ligand.atoms?[i].coord?.y = y }
+                if let z = Double(element[8]) { ligand.atoms?[i].coord?.z = z }
+                
+                ligand.atoms?[i].name = element[11]
             } else if element[0] == "CONECT" {
                 conects.append(element)
             }
         }
         
-        ligand.atoms = self.getAtomsArray(atoms)
-        self.fillAtomsConects(&ligand, conects)
-    }
-    
-    func getAtomsArray(_ atomsData: [[String]]) -> [Atom] {
-        var atoms = [Atom]()
-        var atom: Atom
-        var coordinates: Coordinates
-        
-        for elements in atomsData {
-            atom = Atom()
-            coordinates = Coordinates()
-            
-            for (i, element) in elements.enumerated() {
-                if i == 1 {
-                    if let number = Int(element) { atom.number = number }
-                } else if i == 6 {
-                    if let x = Double(element) { coordinates.x = x }
-                } else if i == 7 {
-                    if let y = Double(element) { coordinates.y = y }
-                } else if i == 8 {
-                    if let z = Double(element) {
-                        coordinates.z = z
-                        atom.coord = coordinates
-                    }
-                } else if i == 11 { atom.name = element }
-            }
-            
-            atoms.append(atom)
-        }
-        return atoms
+        print("ligand = \(ligand)")
     }
     
     func fillAtomsConects(_ ligand: inout Ligand, _ conects: [[String]]) {
