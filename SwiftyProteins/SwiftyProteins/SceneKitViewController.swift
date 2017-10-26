@@ -46,8 +46,8 @@ class SceneKitViewController: UIViewController {
     func drawAtoms() {
         for atom in myLigand.atoms {
             let coor = SCNVector3(x: Float(atom.coord.x!), y: Float(atom.coord.y!), z: Float(atom.coord.z!))
-            createTarget(coor: coor, color: self.whichColor(name: atom.name!))
-//            createLink(number: atom.number!, connect: atom.conect)
+            createTarget(coor: coor, color: Constants.CPKColors[atom.name!] ?? UIColor.init(hex: "FF1493"))
+            createLink(number: atom.number!, connect: atom.conect)
         }
     }
     
@@ -87,23 +87,7 @@ class SceneKitViewController: UIViewController {
         }
         return nil
     }
-    
-    func whichColor(name: String) -> UIColor{
-        switch name {
-        case "C":
-            return .lightGray
-        case "O":
-            return .red
-        case "F":
-            return .green
-        case "N":
-            return .blue
-        case "H":
-            return .white
-        default:
-            return .black
-        }
-    }
+
 }
 
 extension SCNNode {

@@ -18,6 +18,7 @@
 		B41953AB1F9A522C0062FDE2 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */; };
 		B4213E1D1F9F8D6E0088FD26 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4213E1C1F9F8D6E0088FD26 /* Constants.swift */; };
 		B453B7411FA0C52B0072C1C2 /* String+CondenseWhitespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453B7401FA0C52B0072C1C2 /* String+CondenseWhitespace.swift */; };
+		B490307A1FA1D97700095A6E /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49030791FA1D97700095A6E /* UIColor+Hex.swift */; };
 		B4BD67911FA092DE003AF625 /* GetLigandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD67901FA092DE003AF625 /* GetLigandData.swift */; };
 		B4BD67931FA0936F003AF625 /* Ressources.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD67921FA0936F003AF625 /* Ressources.swift */; };
 		B4BD67951FA093F9003AF625 /* LigandTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD67941FA093F9003AF625 /* LigandTableViewController.swift */; };
@@ -41,6 +42,7 @@
 		B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		B4213E1C1F9F8D6E0088FD26 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B453B7401FA0C52B0072C1C2 /* String+CondenseWhitespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CondenseWhitespace.swift"; sourceTree = "<group>"; };
+		B49030791FA1D97700095A6E /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B4BD67901FA092DE003AF625 /* GetLigandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetLigandData.swift; sourceTree = "<group>"; };
 		B4BD67921FA0936F003AF625 /* Ressources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ressources.swift; sourceTree = "<group>"; };
 		B4BD67941FA093F9003AF625 /* LigandTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LigandTableViewController.swift; sourceTree = "<group>"; };
@@ -108,10 +110,11 @@
 				B4BD67991FA0951A003AF625 /* Ligand.swift */,
 				B4BD67921FA0936F003AF625 /* Ressources.swift */,
 				B4213E1C1F9F8D6E0088FD26 /* Constants.swift */,
-				B453B7401FA0C52B0072C1C2 /* String+CondenseWhitespace.swift */,
 				A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */,
 				B41953AA1F9A522C0062FDE2 /* AuthenticationViewController.swift */,
+				A319EABA1FA1A0C00012702C /* SceneKitViewController.swift */,
 				B419539C1F9A1EB90062FDE2 /* Main.storyboard */,
+				B490307B1FA1D97B00095A6E /* Extensions */,
 				B4213E1B1F9F8C930088FD26 /* API */,
 				B4BD67981FA094EB003AF625 /* Ligands List Table View */,
 				A9E46ABA1F9E43DD00E53522 /* Supporting Files */,
@@ -127,11 +130,19 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		B490307B1FA1D97B00095A6E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B453B7401FA0C52B0072C1C2 /* String+CondenseWhitespace.swift */,
+				B49030791FA1D97700095A6E /* UIColor+Hex.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		B4BD67981FA094EB003AF625 /* Ligands List Table View */ = {
 			isa = PBXGroup;
 			children = (
 				B4BD67941FA093F9003AF625 /* LigandTableViewController.swift */,
-				A319EABA1FA1A0C00012702C /* SceneKitViewController.swift */,
 				B4BD67961FA0940B003AF625 /* LigandTableViewCell.swift */,
 			);
 			name = "Ligands List Table View";
@@ -287,6 +298,7 @@
 				B4BD679A1FA0951A003AF625 /* Ligand.swift in Sources */,
 				B41953991F9A1EB90062FDE2 /* AppDelegate.swift in Sources */,
 				B4BD67971FA0940B003AF625 /* LigandTableViewCell.swift in Sources */,
+				B490307A1FA1D97700095A6E /* UIColor+Hex.swift in Sources */,
 				B453B7411FA0C52B0072C1C2 /* String+CondenseWhitespace.swift in Sources */,
 				B4213E1D1F9F8D6E0088FD26 /* Constants.swift in Sources */,
 			);
