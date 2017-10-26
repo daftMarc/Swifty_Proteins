@@ -12,7 +12,16 @@ import SceneKit
 class SceneKitViewController: UIViewController {
     
     
-    var ligandView: SCNView!
+    @IBAction func presentDescriptionAction(_ sender: UIButton) {
+        let destinationVC = storyboard?.instantiateViewController(withIdentifier: "Description View Controller") as! DescriptionViewController
+        
+        destinationVC.ligandDescription = self.myLigand.description
+        
+        self.present(destinationVC, animated: true, completion: nil)
+    }
+    
+    
+    @IBOutlet weak var ligandView: SCNView!
     let ligandScene = SCNScene()
     let cameraNode = SCNNode()
     var myLigand: Ligand!
@@ -21,14 +30,13 @@ class SceneKitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = self.myLigand.description?.id
+        
         self.cameraNode.camera = SCNCamera()
         self.ligandScene.rootNode.addChildNode(self.cameraNode)
         
         // place the camera
         self.cameraNode.position = SCNVector3(x: 0, y: 0, z: 50)
-        
-        // retrieve the SCNView
-        self.ligandView = self.view as! SCNView
         
         // set the scene to the view
         self.ligandView.scene = self.ligandScene
