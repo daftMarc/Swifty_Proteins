@@ -46,13 +46,13 @@ class SceneKitViewController: UIViewController {
     func drawAtoms() {
         for atom in myLigand.atoms {
             let coor = SCNVector3(x: Float(atom.coord.x!), y: Float(atom.coord.y!), z: Float(atom.coord.z!))
-            createTarget(coor: coor, color: Constants.CPKColors[atom.name!] ?? UIColor.init(hex: "FF1493"))
+            createTarget(coor: coor, color: Constants.CPKColors[atom.name!] ?? Constants.defaultColor)
             createLink(number: atom.number!, connect: atom.conect)
         }
     }
     
     func createTarget(coor: SCNVector3, color: UIColor) {
-        let geometry:SCNGeometry = SCNSphere(radius: 0.2) //TODO Bonus
+        let geometry:SCNGeometry = SCNSphere(radius: 0.2)
         
         geometry.materials.first?.diffuse.contents = color
         

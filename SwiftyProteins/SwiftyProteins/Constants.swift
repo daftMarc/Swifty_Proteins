@@ -12,6 +12,7 @@ import UIKit
 struct Constants {
     
     static let api = "http://ligand-expo.rcsb.org/reports/"
+    static let defaultColor = UIColor.init(hex: "FF1493")
     
     static let CPKColors: [String : UIColor] = ["H" : UIColor.init(hex: "ffffff"),
                                                 "C" : UIColor.init(hex: "000000"),
