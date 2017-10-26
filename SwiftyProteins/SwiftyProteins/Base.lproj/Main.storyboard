@@ -182,15 +182,15 @@
             </objects>
             <point key="canvasLocation" x="2818.125" y="35.91549295774648"/>
         </scene>
-        <!--View Controller-->
+        <!--Scene Kit View Controller-->
         <scene sceneID="Fvo-JN-i0Q">
             <objects>
-                <viewController storyboardIdentifier="SceneKit View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Bej-Y2-4VU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SceneKit View" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Bej-Y2-4VU" customClass="SceneKitViewController" customModule="SwiftyProteins" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sE8-UK-kHp"/>
                         <viewControllerLayoutGuide type="bottom" id="Zba-YU-J2t"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CJd-JO-70c">
+                    <view key="view" contentMode="scaleToFill" id="CJd-JO-70c" customClass="SCNView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqZ-hj-r7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3720" y="36"/>
+            <point key="canvasLocation" x="3632" y="36"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W7M-Ss-xSH">

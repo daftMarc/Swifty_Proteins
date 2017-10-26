@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A319EABB1FA1A0C00012702C /* SceneKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319EABA1FA1A0C00012702C /* SceneKitViewController.swift */; };
 		A9E46AB71F9E43CE00E53522 /* ligands.txt in Resources */ = {isa = PBXBuildFile; fileRef = A9E46AB41F9E43CD00E53522 /* ligands.txt */; };
 		A9E46AB81F9E43CE00E53522 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */; };
 		B41213981F9DDD1A00B2CC9D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		A268190E274D3CF364D049E3 /* Pods-SwiftyProteins.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyProteins.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftyProteins/Pods-SwiftyProteins.debug.xcconfig"; sourceTree = "<group>"; };
+		A319EABA1FA1A0C00012702C /* SceneKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneKitViewController.swift; sourceTree = "<group>"; };
 		A9E46AB41F9E43CD00E53522 /* ligands.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ligands.txt; sourceTree = "<group>"; };
 		A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				B4BD67941FA093F9003AF625 /* LigandTableViewController.swift */,
+				A319EABA1FA1A0C00012702C /* SceneKitViewController.swift */,
 				B4BD67961FA0940B003AF625 /* LigandTableViewCell.swift */,
 			);
 			name = "Ligands List Table View";
@@ -277,6 +280,7 @@
 			files = (
 				B4BD67951FA093F9003AF625 /* LigandTableViewController.swift in Sources */,
 				B41953AB1F9A522C0062FDE2 /* AuthenticationViewController.swift in Sources */,
+				A319EABB1FA1A0C00012702C /* SceneKitViewController.swift in Sources */,
 				B4BD67931FA0936F003AF625 /* Ressources.swift in Sources */,
 				B4BD67911FA092DE003AF625 /* GetLigandData.swift in Sources */,
 				A9E46AB81F9E43CE00E53522 /* SplashScreenViewController.swift in Sources */,

@@ -94,13 +94,14 @@ class LigandTableViewController: UITableViewController, UISearchResultsUpdating 
     }
     
     
-    func prepareForSceneKit() {
+    func prepareForSceneKit(ligand: Ligand) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         self.tableView.isUserInteractionEnabled = true
         
-        let destinationvc = storyboard?.instantiateViewController(withIdentifier: "SceneKit View")
+        let destinationvc = storyboard?.instantiateViewController(withIdentifier: "SceneKit View") as! SceneKitViewController
+        destinationvc.myLigand = ligand
         
-        self.navigationController?.pushViewController(destinationvc!, animated: true)
+        self.navigationController?.pushViewController(destinationvc, animated: true)
     }
     
 }

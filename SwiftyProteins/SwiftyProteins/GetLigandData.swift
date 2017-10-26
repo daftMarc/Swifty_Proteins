@@ -123,7 +123,7 @@ class GetLigandData {
             }
         }
         
-        DispatchQueue.main.async { self.delegate.prepareForSceneKit() }
+        DispatchQueue.main.async { self.delegate.prepareForSceneKit(ligand: ligand) }
     }
     
     func getFormattedPDB(_ PDB: String) -> [[String]] {
