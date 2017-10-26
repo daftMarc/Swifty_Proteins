@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -195,89 +196,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1Bq-wT-af4">
-                                <rect key="frame" x="0.0" y="64" width="320" height="496"/>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yrv-Ey-by5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </sceneKitView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R2D-4R-U1S">
+                                <rect key="frame" x="20" y="530" width="281" height="30"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Qrh-SV-9pM">
-                                        <rect key="frame" x="16" y="0.0" width="288" height="49.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected element :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24k-5r-UWE">
-                                                <rect key="frame" x="0.0" y="0.0" width="200.5" height="49.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="element" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzM-yj-AxS">
-                                                <rect key="frame" x="200.5" y="0.0" width="87.5" height="49.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yrv-Ey-by5">
-                                        <rect key="frame" x="0.0" y="54.5" width="320" height="387"/>
-                                    </sceneKitView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R2D-4R-U1S">
-                                        <rect key="frame" x="16" y="446.5" width="288" height="49.5"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-0m-vnU">
-                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="49.5"/>
-                                                <color key="backgroundColor" red="0.30196078430000001" green="0.81176470590000005" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Sticks">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1S-US-ioP">
-                                                <rect key="frame" x="99.5" y="0.0" width="89" height="49.5"/>
-                                                <color key="backgroundColor" red="0.30196078430000001" green="0.81176470590000005" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Balls">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nT-I4-znd">
-                                                <rect key="frame" x="198.5" y="0.0" width="89.5" height="49.5"/>
-                                                <color key="backgroundColor" red="0.30196078430000001" green="0.81176470590000005" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Description">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="presentDescriptionAction:" destination="Bej-Y2-4VU" eventType="touchUpInside" id="VJd-C5-slQ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-0m-vnU">
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="30"/>
+                                        <color key="backgroundColor" red="0.30196078430000001" green="0.81176470590000005" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Sticks">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1S-US-ioP">
+                                        <rect key="frame" x="97" y="0.0" width="87" height="30"/>
+                                        <color key="backgroundColor" red="0.30196078430000001" green="0.81176470590000005" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Balls">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nT-I4-znd">
+                                        <rect key="frame" x="194" y="0.0" width="87" height="30"/>
+                                        <color key="backgroundColor" red="0.30196078430000001" green="0.81176470590000005" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title=" Description ">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="presentDescriptionAction:" destination="Bej-Y2-4VU" eventType="touchUpInside" id="VJd-C5-slQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="R2D-4R-U1S" firstAttribute="height" secondItem="1Bq-wT-af4" secondAttribute="height" multiplier="0.1" id="Bdx-sE-Lu8"/>
-                                    <constraint firstItem="Qrh-SV-9pM" firstAttribute="width" secondItem="1Bq-wT-af4" secondAttribute="width" multiplier="0.9" id="W4m-HZ-Mh2"/>
-                                    <constraint firstItem="Qrh-SV-9pM" firstAttribute="height" secondItem="1Bq-wT-af4" secondAttribute="height" multiplier="0.1" id="XVe-12-EZQ"/>
-                                    <constraint firstItem="Yrv-Ey-by5" firstAttribute="width" secondItem="1Bq-wT-af4" secondAttribute="width" id="fZE-ld-fm2"/>
-                                    <constraint firstItem="R2D-4R-U1S" firstAttribute="width" secondItem="Qrh-SV-9pM" secondAttribute="width" id="z9V-2v-iZn"/>
-                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Qrh-SV-9pM">
+                                <rect key="frame" x="16" y="72" width="204.5" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected element :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24k-5r-UWE">
+                                        <rect key="frame" x="0.0" y="0.0" width="142.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="element" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzM-yj-AxS">
+                                        <rect key="frame" x="142.5" y="0.0" width="62" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1Bq-wT-af4" firstAttribute="leading" secondItem="CJd-JO-70c" secondAttribute="leading" id="CqA-Pm-AVC"/>
-                            <constraint firstItem="1Bq-wT-af4" firstAttribute="top" secondItem="sE8-UK-kHp" secondAttribute="bottom" id="EVB-wG-SJj"/>
-                            <constraint firstAttribute="trailing" secondItem="1Bq-wT-af4" secondAttribute="trailing" id="fe6-62-jfH"/>
-                            <constraint firstItem="Zba-YU-J2t" firstAttribute="top" secondItem="1Bq-wT-af4" secondAttribute="bottom" constant="8" id="raH-d0-gBo"/>
+                            <constraint firstAttribute="trailing" secondItem="Yrv-Ey-by5" secondAttribute="trailing" id="6xu-fA-LiH"/>
+                            <constraint firstItem="Qrh-SV-9pM" firstAttribute="leading" secondItem="CJd-JO-70c" secondAttribute="leadingMargin" id="Ir9-ny-VTf"/>
+                            <constraint firstItem="Yrv-Ey-by5" firstAttribute="top" secondItem="CJd-JO-70c" secondAttribute="top" id="VzF-u4-ghL"/>
+                            <constraint firstItem="Yrv-Ey-by5" firstAttribute="bottom" secondItem="Zba-YU-J2t" secondAttribute="top" id="c2A-qh-1YR"/>
+                            <constraint firstItem="Zba-YU-J2t" firstAttribute="top" secondItem="R2D-4R-U1S" secondAttribute="bottom" constant="8" symbolic="YES" id="gwO-mC-3yz"/>
+                            <constraint firstItem="Qrh-SV-9pM" firstAttribute="top" secondItem="sE8-UK-kHp" secondAttribute="bottom" constant="8" symbolic="YES" id="lfD-5v-1nD"/>
+                            <constraint firstItem="Yrv-Ey-by5" firstAttribute="leading" secondItem="CJd-JO-70c" secondAttribute="leading" id="pFk-8P-Syf"/>
+                            <constraint firstItem="R2D-4R-U1S" firstAttribute="centerX" secondItem="Yrv-Ey-by5" secondAttribute="centerX" id="xMq-42-cBL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ligand" id="0nU-wx-wSk">
