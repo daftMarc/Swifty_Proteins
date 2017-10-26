@@ -20,11 +20,20 @@ class SceneKitViewController: UIViewController {
         self.present(destinationVC, animated: true, completion: nil)
     }
     
+    @IBAction func rotateLigand(_ sender: UIBarButtonItem) {
+        if self.rotation { self.ligandScene.rootNode.runAction(SCNAction.rotateBy(x: 0, y: 500, z: 0, duration: 600), forKey: Constants.rotate) }
+        else { self.ligandScene.rootNode.removeAction(forKey: Constants.rotate) }
+        
+        self.rotation = !self.rotation
+    }
+
     
+    @IBOutlet weak var playButton: UIBarButtonItem!
     @IBOutlet weak var ligandView: SCNView!
     let ligandScene = SCNScene()
     let cameraNode = SCNNode()
     var myLigand: Ligand!
+    var rotation = true
     
     
     override func viewDidLoad() {

@@ -283,12 +283,17 @@
                     <navigationItem key="navigationItem" title="Ligand" id="0nU-wx-wSk">
                         <rightBarButtonItems>
                             <barButtonItem title="Share" id="aVT-21-pgH"/>
-                            <barButtonItem systemItem="play" id="JG3-co-MJ3"/>
+                            <barButtonItem systemItem="play" id="JG3-co-MJ3">
+                                <connections>
+                                    <action selector="rotateLigand:" destination="Bej-Y2-4VU" id="Dx7-dR-Eek"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="ligandView" destination="Yrv-Ey-by5" id="XFo-n3-wF1"/>
+                        <outlet property="playButton" destination="JG3-co-MJ3" id="Ngy-Q2-Fa1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqZ-hj-r7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
