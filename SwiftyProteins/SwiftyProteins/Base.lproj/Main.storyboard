@@ -213,6 +213,9 @@
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="removeSticksAction:" destination="Bej-Y2-4VU" eventType="touchUpInside" id="CFR-Yr-tdu"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1S-US-ioP">
                                         <rect key="frame" x="97" y="0.0" width="87" height="30"/>
@@ -225,6 +228,9 @@
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="removeBallsAction:" destination="Bej-Y2-4VU" eventType="touchUpInside" id="mlA-jH-nPy"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nT-I4-znd">
                                         <rect key="frame" x="194" y="0.0" width="87" height="30"/>
