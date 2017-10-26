@@ -45,9 +45,12 @@ class SceneKitViewController: UIViewController {
         self.ligandScene.rootNode.addChildNode(self.cameraNode)
         
         // place the camera
-        let atom = self.myLigand.atoms[0]
-//        self.cameraNode.position = SCNVector3(x: atom.coord.x!, y: atom.coord.y!, z: atom.coord.z!)
-        self.cameraNode.position = SCNVector3(x: 0, y: 0, z: 50)
+        let firstAtom = self.myLigand.atoms[0]
+        if firstAtom.coord.x! > Float(10) {
+            self.cameraNode.position = SCNVector3(x: firstAtom.coord.x!, y: firstAtom.coord.y!, z: firstAtom.coord.y! + 30)
+        } else {
+            self.cameraNode.position = SCNVector3(x: 0, y: 0, z: 50)
+        }
         
         // set the scene to the view
         self.ligandView.scene = self.ligandScene
