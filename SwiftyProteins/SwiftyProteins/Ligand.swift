@@ -39,8 +39,8 @@ struct Atom {
 
 struct Coordinates {
     
-    var x: Double?
-    var y: Double?
-    var z: Double?
+    var x: Float?
+    var y: Float?
+    var z: Float?
     
 }

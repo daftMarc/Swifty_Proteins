@@ -45,6 +45,8 @@ class SceneKitViewController: UIViewController {
         self.ligandScene.rootNode.addChildNode(self.cameraNode)
         
         // place the camera
+        let atom = self.myLigand.atoms[0]
+//        self.cameraNode.position = SCNVector3(x: atom.coord.x!, y: atom.coord.y!, z: atom.coord.z!)
         self.cameraNode.position = SCNVector3(x: 0, y: 0, z: 50)
         
         // set the scene to the view
@@ -62,7 +64,7 @@ class SceneKitViewController: UIViewController {
     
     func drawAtoms() {
         for atom in myLigand.atoms {
-            let coor = SCNVector3(x: Float(atom.coord.x!), y: Float(atom.coord.y!), z: Float(atom.coord.z!))
+            let coor = SCNVector3(x: atom.coord.x!, y: atom.coord.y!, z: atom.coord.z!)
             createTarget(coor: coor, color: Constants.CPKColors[atom.name!] ?? Constants.defaultColor)
             createLink(number: atom.number!, connect: atom.conect)
         }
@@ -84,11 +86,11 @@ class SceneKitViewController: UIViewController {
         print("number = \(number)\nconnect = \(connect)")
         let line = SCNNode()
         let atom1 = getAtomWith(number: number)
-        let vec1 = SCNVector3(x: Float((atom1?.coord.x)!), y: Float((atom1?.coord.y)!), z: Float((atom1?.coord.z)!))
+        let vec1 = SCNVector3(x: (atom1?.coord.x)!, y: (atom1?.coord.y)!, z: (atom1?.coord.z)!)
         
         for connection in connect{
             let atom2 = getAtomWith(number: connection)
-            let vec2 = SCNVector3(x: Float((atom2?.coord.x)!), y: Float((atom2?.coord.y)!), z: Float((atom2?.coord.z)!))
+            let vec2 = SCNVector3(x: (atom2?.coord.x)!, y: (atom2?.coord.y)!, z: (atom2?.coord.z)!)
             
             ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: 0.1, color: .cyan))
         }

@@ -70,16 +70,21 @@ class GetLigandData {
             if let inChIKey = try xml["PDBx:datablock"]["PDBx:pdbx_chem_comp_descriptorCategory"]["PDBx:pdbx_chem_comp_descriptor"].withAttribute("type", "InChIKey")["PDBx:descriptor"].element?.text { description.InChIKey = inChIKey }
         } catch { print("Can't get InChIKey") }
         
-        self.getLigandPDB(ligand, firstChar, description)
+        let ligandURL = "\(firstChar)/\(ligand)/\(ligand)_ideal.pdb"
+        self.getLigandPDB(ligand, firstChar, description, ligandURL)
     }
     
     
-    func getLigandPDB(_ ligand: String, _ firstChar: String, _ description: Description) {
-        let ligandURL = "\(firstChar)/\(ligand)/\(ligand)_ideal.pdb"
+    func getLigandPDB(_ ligand: String, _ firstChar: String, _ description: Description, _ ligandURL: String) {
         
         Alamofire.request(Constants.api + ligandURL).responseString { response in
             guard let data = response.data, let PDB = String(data: data, encoding: .utf8), let code = response.response?.statusCode, code == 200 else {
                 DispatchQueue.main.async { self.delegate.displayAlert(ligand) }
+                return
+            }
+            
+            if data.isEmpty {
+                self.getLigandPDB(ligand, firstChar, description, "\(firstChar)/\(ligand)/\(ligand)_model.pdb")
                 return
             }
             
@@ -97,7 +102,7 @@ class GetLigandData {
             if element[0] == "ATOM" {
                 ligand.atoms.append(Atom())
                 
-                guard ligand.atoms.indices.contains(i), let number = Int(element[1]), let x = Double(element[6]), let y = Double(element[7]), let z = Double(element[8]), element.indices.contains(11) else {
+                guard ligand.atoms.indices.contains(i), let number = Int(element[1]), let x = Float(element[6]), let y = Float(element[7]), let z = Float(element[8]), element.indices.contains(11) else {
                     DispatchQueue.main.async { self.delegate.displayAlert(ligand.description?.id ?? "this protein") }
                     return
                 }
