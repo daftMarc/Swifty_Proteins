@@ -10,45 +10,45 @@ import UIKit
 import SceneKit
 
 class SceneKitViewController: UIViewController {
-
+    
+    
     var ligandView: SCNView!
-    var ligandScene: SCNScene!
-    var cameraNode: SCNNode!
+    let ligandScene = SCNScene()
+    let cameraNode = SCNNode()
     var myLigand: Ligand!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        initView()
-        initScene()
-        initCamera()
+        
+        self.cameraNode.camera = SCNCamera()
+        self.ligandScene.rootNode.addChildNode(self.cameraNode)
+        
+        // place the camera
+        self.cameraNode.position = SCNVector3(x: 0, y: 0, z: 50)
+        
+        // retrieve the SCNView
+        self.ligandView = self.view as! SCNView
+        
+        // set the scene to the view
+        self.ligandView.scene = self.ligandScene
+        
+        // allow the user to manipulate the camera
+        ligandView.allowsCameraControl = true
+        
+        // set default light
+        self.ligandView.autoenablesDefaultLighting = true
+        
+        self.drawAtoms()
+    }
+    
+    
+    func drawAtoms() {
         for atom in myLigand.atoms {
             let coor = SCNVector3(x: Float(atom.coord.x!), y: Float(atom.coord.y!), z: Float(atom.coord.z!))
             createTarget(coor: coor, color: self.whichColor(name: atom.name!))
-            createLink(number: atom.number!, connect: atom.conect)
+//            createLink(number: atom.number!, connect: atom.conect)
         }
-//        createTarget(x: 1, y: 1, z: 5)
-    }
-    
-    func initView() {
-        ligandView = self.view as! SCNView
-        ligandView.allowsCameraControl = true
-        ligandView.autoenablesDefaultLighting = true
-    }
-    
-    func initScene() {
-        ligandScene = SCNScene()
-        ligandView.scene = ligandScene
-        
-        ligandView.isPlaying = true //TODO Bonus
-    }
-    
-    func initCamera() {
-        cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        
-        cameraNode.position = SCNVector3(x: 0, y:0, z:50)
-        ligandScene.rootNode.addChildNode(cameraNode)
     }
     
     func createTarget(coor: SCNVector3, color: UIColor) {
