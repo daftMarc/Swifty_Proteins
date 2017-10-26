@@ -275,7 +275,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ligand" id="0nU-wx-wSk">
                         <rightBarButtonItems>
-                            <barButtonItem title="Share" id="aVT-21-pgH"/>
+                            <barButtonItem title="Share" id="aVT-21-pgH">
+                                <connections>
+                                    <action selector="shareAction:" destination="Bej-Y2-4VU" id="mzf-hc-cXv"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="play" id="JG3-co-MJ3">
                                 <connections>
                                     <action selector="rotateLigand:" destination="Bej-Y2-4VU" id="Dx7-dR-Eek"/>

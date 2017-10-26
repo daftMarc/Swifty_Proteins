@@ -20,6 +20,29 @@ class SceneKitViewController: UIViewController {
         self.present(destinationVC, animated: true, completion: nil)
     }
     
+    @IBAction func shareAction(_ sender: UIBarButtonItem) {
+        let screenShot = self.ligandView.snapshot()
+        
+        let shareText = "Hello, world!"
+        
+            let vc = UIActivityViewController(activityItems: [shareText, screenShot], applicationActivities: [])
+            present(vc, animated: true)
+        
+//        let messageStr = "Ketan SO"
+//        let activityViewController:UIActivityViewController = UIActivityViewController(activityItems:  [screenShot, messageStr], applicationActivities: nil)
+//        activityViewController.excludedActivityTypes = [UIActivityType.print, UIActivityType.postToWeibo, UIActivityType.copyToPasteboard, UIActivityType.addToReadingList, UIActivityType.postToVimeo]
+//        self.present(activityViewController, animated: true, completion: nil)
+        
+//        // set up activity view controller
+//        let imageToShare = [ screenShot, "Title of your screenshot" ] as [Any]
+//        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+//        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+//        
+//        // present the view controller
+//        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func rotateLigand(_ sender: UIBarButtonItem) {
         if self.rotation { self.ligandScene.rootNode.runAction(SCNAction.rotateBy(x: 0, y: 500, z: 0, duration: 600), forKey: Constants.rotate) }
         else { self.ligandScene.rootNode.removeAction(forKey: Constants.rotate) }
