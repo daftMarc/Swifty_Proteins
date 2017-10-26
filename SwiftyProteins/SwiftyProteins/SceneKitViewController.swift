@@ -40,19 +40,19 @@ class SceneKitViewController: UIViewController {
         ligandScene = SCNScene()
         ligandView.scene = ligandScene
         
-        ligandView.isPlaying = true
+        ligandView.isPlaying = true //TODO Bonus
     }
     
     func initCamera() {
         cameraNode = SCNNode()
         cameraNode.camera = SCNCamera()
         
-        cameraNode.position = SCNVector3(x: 0, y:5, z:50)
+        cameraNode.position = SCNVector3(x: 0, y:0, z:50)
         ligandScene.rootNode.addChildNode(cameraNode)
     }
     
     func createTarget(coor: SCNVector3, color: UIColor) {
-        let geometry:SCNGeometry = SCNSphere(radius: 0.2)
+        let geometry:SCNGeometry = SCNSphere(radius: 0.2) //TODO Bonus
         
         geometry.materials.first?.diffuse.contents = color
         
@@ -64,13 +64,19 @@ class SceneKitViewController: UIViewController {
     }
     
     func createLink(number: Int, connect: [Int]){
-        
+        print("number = \(number)\nconnect = \(connect)")
         let line = SCNNode()
         let atom1 = getAtomWith(number: number)
-        let atom2 = getAtomWith(number: connect[0])
         let vec1 = SCNVector3(x: Float((atom1?.coord.x)!), y: Float((atom1?.coord.y)!), z: Float((atom1?.coord.z)!))
-        let vec2 = SCNVector3(x: Float((atom2?.coord.x)!), y: Float((atom2?.coord.y)!), z: Float((atom2?.coord.z)!))
-        ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: 0.1, color: .cyan))
+        
+        for connection in connect{
+            let atom2 = getAtomWith(number: connection)
+            let vec2 = SCNVector3(x: Float((atom2?.coord.x)!), y: Float((atom2?.coord.y)!), z: Float((atom2?.coord.z)!))
+            
+            ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: 0.1, color: .cyan))
+        }
+        
+        
     }
     
     func getAtomWith(number: Int) -> Atom? {
