@@ -27,7 +27,7 @@ class SceneKitViewController: UIViewController {
         present(vc, animated: true)
     }
     
-    @IBAction func rotateLigand(_ sender: UIBarButtonItem) {
+    @IBAction func rotateLigand(_ sender: UIButton) {
         if self.rotation { self.ligandScene.rootNode.runAction(SCNAction.rotateBy(x: 0, y: 500, z: 0, duration: 600), forKey: Constants.rotate) }
         else { self.ligandScene.rootNode.removeAction(forKey: Constants.rotate) }
         
@@ -62,8 +62,7 @@ class SceneKitViewController: UIViewController {
         self.displaySticks = !self.displaySticks
     }
     
-    
-    @IBOutlet weak var playButton: UIBarButtonItem!
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var ligandView: SCNView!
     @IBOutlet weak var elementName: UILabel!
     let ligandScene = SCNScene()
@@ -72,7 +71,6 @@ class SceneKitViewController: UIViewController {
     var rotation = true
     var displayBalls = false
     var displaySticks = false
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +100,6 @@ class SceneKitViewController: UIViewController {
         self.drawAtoms()
     }
     
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let location = touch.location(in: ligandView)
@@ -111,27 +108,23 @@ class SceneKitViewController: UIViewController {
         if let hitObj = hitList.first {
             let node = hitObj.node
             if let atomName = node.name{
-                print(atomName)
-                
                 self.elementName.text = "Element = \(atomName)"
-                print(self.elementName.text!)
             }
-            
         }
-        
     }
     
     func drawAtoms(balls: Bool = true, sticks: Bool = true) {
         for atom in myLigand.atoms {
             let coor = SCNVector3(x: atom.coord.x!, y: atom.coord.y!, z: atom.coord.z!)
+            
             if balls { createTarget(atomName: atom.name!, coor: coor, color: Constants.CPKColors[atom.name!] ?? Constants.defaultColor) }
-            if sticks { createLink(number: atom.number!, connect: atom.conect) }
+            if sticks { createLink(atom: atom, number: atom.number!, connect: atom.conect) }
         }
     }
     
     func createTarget(atomName: String, coor: SCNVector3, color: UIColor) {
         let geometry:SCNGeometry = SCNSphere(radius: 0.2)
-        
+
         geometry.materials.first?.diffuse.contents = color
         
         let geometryNode = SCNNode(geometry: geometry)
@@ -142,20 +135,24 @@ class SceneKitViewController: UIViewController {
         ligandScene.rootNode.addChildNode(geometryNode)
     }
     
-    func createLink(number: Int, connect: [Int]){
+    func createLink(atom: Atom, number: Int, connect: [Int]){
         print("number = \(number)\nconnect = \(connect)")
-        let line = SCNNode()
         let atom1 = getAtomWith(number: number)
         let vec1 = SCNVector3(x: (atom1?.coord.x)!, y: (atom1?.coord.y)!, z: (atom1?.coord.z)!)
         
+//        if atom.name == "H"{ return }
+        
         for connection in connect{
+            let line = SCNNode()
             let atom2 = getAtomWith(number: connection)
             let vec2 = SCNVector3(x: (atom2?.coord.x)!, y: (atom2?.coord.y)!, z: (atom2?.coord.z)!)
             
-            ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: 0.1, color: .cyan))
+//            if atom2!.name == "H"{ continue }
+            print(ligandScene.rootNode.childNodes.count)
+            ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: 0.1, color: .lightGray))
+            print(ligandScene.rootNode.childNodes.count)
+
         }
-        
-        
     }
     
     func getAtomWith(number: Int) -> Atom? {
