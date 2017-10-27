@@ -65,6 +65,7 @@ class SceneKitViewController: UIViewController {
     
     @IBOutlet weak var playButton: UIBarButtonItem!
     @IBOutlet weak var ligandView: SCNView!
+    @IBOutlet weak var elementName: UILabel!
     let ligandScene = SCNScene()
     let cameraNode = SCNNode()
     var myLigand: Ligand!
@@ -102,15 +103,33 @@ class SceneKitViewController: UIViewController {
     }
     
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: ligandView)
+        let hitList = ligandView.hitTest(location, options: nil)
+        
+        if let hitObj = hitList.first {
+            let node = hitObj.node
+            if let atomName = node.name{
+                print(atomName)
+                
+                self.elementName.text = "Element = \(atomName)"
+                print(self.elementName.text!)
+            }
+            
+        }
+        
+    }
+    
     func drawAtoms(balls: Bool = true, sticks: Bool = true) {
         for atom in myLigand.atoms {
             let coor = SCNVector3(x: atom.coord.x!, y: atom.coord.y!, z: atom.coord.z!)
-            if balls { createTarget(coor: coor, color: Constants.CPKColors[atom.name!] ?? Constants.defaultColor) }
+            if balls { createTarget(atomName: atom.name!, coor: coor, color: Constants.CPKColors[atom.name!] ?? Constants.defaultColor) }
             if sticks { createLink(number: atom.number!, connect: atom.conect) }
         }
     }
     
-    func createTarget(coor: SCNVector3, color: UIColor) {
+    func createTarget(atomName: String, coor: SCNVector3, color: UIColor) {
         let geometry:SCNGeometry = SCNSphere(radius: 0.2)
         
         geometry.materials.first?.diffuse.contents = color
@@ -118,6 +137,7 @@ class SceneKitViewController: UIViewController {
         let geometryNode = SCNNode(geometry: geometry)
         
         geometryNode.position = coor
+        geometryNode.name = atomName
         
         ligandScene.rootNode.addChildNode(geometryNode)
     }
