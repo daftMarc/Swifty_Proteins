@@ -36,6 +36,15 @@ class SceneKitViewController: UIViewController {
 
     @IBAction func removeBallsAction(_ sender: UIButton) {
         self.balls = !self.balls
+        
+        if !self.balls {
+            self.changeModelButton.isUserInteractionEnabled = false
+            self.changeModelButton.alpha = 0.5
+        } else {
+            self.changeModelButton.isUserInteractionEnabled = true
+            self.changeModelButton.alpha = 1
+        }
+        
         if !self.balls {
             self.ligandScene.rootNode.enumerateChildNodes { (node, stop) -> Void in
                 if let color = node.geometry?.materials.first?.diffuse.contents as? UIColor {
@@ -63,6 +72,7 @@ class SceneKitViewController: UIViewController {
         self.drawAtoms()
     }
     
+    @IBOutlet weak var changeModelButton: UIButton!
     @IBOutlet weak var ballsButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var ligandView: SCNView!
@@ -90,6 +100,9 @@ class SceneKitViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = self.myLigand.description?.id
+        
+        self.elementName.layer.masksToBounds = true
+        self.elementName.layer.cornerRadius = 5
         
         self.cameraNode.camera = SCNCamera()
         self.ligandScene.rootNode.addChildNode(self.cameraNode)
@@ -152,22 +165,19 @@ class SceneKitViewController: UIViewController {
     }
     
     func createLink(atom: Atom, number: Int, connect: [Int]){
-        print("number = \(number)\nconnect = \(connect)")
         let atom1 = getAtomWith(number: number)
         let vec1 = SCNVector3(x: (atom1?.coord.x)!, y: (atom1?.coord.y)!, z: (atom1?.coord.z)!)
         
         if self.hydrogenIsOff, atom.name == "H" { return }
         
         for connection in connect{
-            let line = SCNNode()
             let atom2 = getAtomWith(number: connection)
             let vec2 = SCNVector3(x: (atom2?.coord.x)!, y: (atom2?.coord.y)!, z: (atom2?.coord.z)!)
         
             if self.hydrogenIsOff, atom2!.name == "H" { continue }
-            print(ligandScene.rootNode.childNodes.count)
-            ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: self.spheresModel ? 0.9 : 0.1, color: .lightGray))
-            print(ligandScene.rootNode.childNodes.count)
 
+            let test = CylinderLine(parent: ligandScene.rootNode, v1: vec1, v2: vec2, radius: self.spheresModel ? 0.9 : 0.1, color: UIColor.lightGray)
+            ligandScene.rootNode.addChildNode(test)
         }
     }
     
@@ -188,87 +198,69 @@ class SceneKitViewController: UIViewController {
     
 }
 
-extension SCNNode {
-    
-    func normalizeVector(_ iv: SCNVector3) -> SCNVector3 {
-        let length = sqrt(iv.x * iv.x + iv.y * iv.y + iv.z * iv.z)
-        if length == 0 {
-            return SCNVector3(0.0, 0.0, 0.0)
-        }
+class   CylinderLine: SCNNode
+{
+    init( parent: SCNNode,//Needed to add destination point of your line
+        v1: SCNVector3,//source
+        v2: SCNVector3,//destination
+        radius: CGFloat,//somes option for the cylinder
+        color: UIColor )// color of your node object
+    {
+        super.init()
         
-        return SCNVector3( iv.x / length, iv.y / length, iv.z / length)
+        //Calcul the height of our line
+        let  height = v1.distance(receiver: v2)
         
-    }
-    
-    func buildLineInTwoPointsWithRotation(from startPoint: SCNVector3,
-                                          to endPoint: SCNVector3,
-                                          radius: CGFloat,
-                                          color: UIColor) -> SCNNode {
-        let w = SCNVector3(x: endPoint.x-startPoint.x,
-                           y: endPoint.y-startPoint.y,
-                           z: endPoint.z-startPoint.z)
-        let l = CGFloat(sqrt(w.x * w.x + w.y * w.y + w.z * w.z))
+        //set position to v1 coordonate
+        position = v1
         
-        if l == 0.0 {
-            // two points together.
-            let sphere = SCNSphere(radius: radius)
-            sphere.firstMaterial?.diffuse.contents = color
-            self.geometry = sphere
-            self.position = startPoint
-            return self
-            
-        }
+        //Create the second node to draw direction vector
+        let nodeV2 = SCNNode()
         
-        let cyl = SCNCylinder(radius: radius, height: l)
+        //define his position
+        nodeV2.position = v2
+        //add it to parent
+        parent.addChildNode(nodeV2)
+        
+        //Align Z axis
+        let zAlign = SCNNode()
+        zAlign.eulerAngles.x = Float(Double.pi / 2)
+        
+        //create our cylinder
+        let cyl = SCNCylinder(radius: radius, height: CGFloat(height))
         cyl.firstMaterial?.diffuse.contents = color
         
-        self.geometry = cyl
+        //Create node with cylinder
+        let nodeCyl = SCNNode(geometry: cyl )
+        nodeCyl.position.y = -height/2
+        zAlign.addChildNode(nodeCyl)
         
-        //original vector of cylinder above 0,0,0
-        let ov = SCNVector3(0, l/2.0,0)
-        //target vector, in new coordination
-        let nv = SCNVector3((endPoint.x - startPoint.x)/2.0, (endPoint.y - startPoint.y)/2.0,
-                            (endPoint.z-startPoint.z)/2.0)
+        //Add it to child
+        addChildNode(zAlign)
         
-        // axis between two vector
-        let av = SCNVector3( (ov.x + nv.x)/2.0, (ov.y+nv.y)/2.0, (ov.z+nv.z)/2.0)
+        //set contrainte direction to our vector
+        constraints = [SCNLookAtConstraint(target: nodeV2)]
+    }
+    
+    override init() {
+        super.init()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
+private extension SCNVector3{
+    func distance(receiver:SCNVector3) -> Float{
+        let xd = receiver.x - self.x
+        let yd = receiver.y - self.y
+        let zd = receiver.z - self.z
+        let distance = Float(sqrt(xd * xd + yd * yd + zd * zd))
         
-        //normalized axis vector
-        let av_normalized = normalizeVector(av)
-        let q0 = Float(0.0) //cos(angel/2), angle is always 180 or M_PI
-        let q1 = Float(av_normalized.x) // x' * sin(angle/2)
-        let q2 = Float(av_normalized.y) // y' * sin(angle/2)
-        let q3 = Float(av_normalized.z) // z' * sin(angle/2)
-        
-        let r_m11 = q0 * q0 + q1 * q1 - q2 * q2 - q3 * q3
-        let r_m12 = 2 * q1 * q2 + 2 * q0 * q3
-        let r_m13 = 2 * q1 * q3 - 2 * q0 * q2
-        let r_m21 = 2 * q1 * q2 - 2 * q0 * q3
-        let r_m22 = q0 * q0 - q1 * q1 + q2 * q2 - q3 * q3
-        let r_m23 = 2 * q2 * q3 + 2 * q0 * q1
-        let r_m31 = 2 * q1 * q3 + 2 * q0 * q2
-        let r_m32 = 2 * q2 * q3 - 2 * q0 * q1
-        let r_m33 = q0 * q0 - q1 * q1 - q2 * q2 + q3 * q3
-        
-        self.transform.m11 = r_m11
-        self.transform.m12 = r_m12
-        self.transform.m13 = r_m13
-        self.transform.m14 = 0.0
-        
-        self.transform.m21 = r_m21
-        self.transform.m22 = r_m22
-        self.transform.m23 = r_m23
-        self.transform.m24 = 0.0
-        
-        self.transform.m31 = r_m31
-        self.transform.m32 = r_m32
-        self.transform.m33 = r_m33
-        self.transform.m34 = 0.0
-        
-        self.transform.m41 = (startPoint.x + endPoint.x) / 2.0
-        self.transform.m42 = (startPoint.y + endPoint.y) / 2.0
-        self.transform.m43 = (startPoint.z + endPoint.z) / 2.0
-        self.transform.m44 = 1.0
-        return self
+        if (distance < 0){
+            return (distance * -1)
+        } else {
+            return (distance)
+        }
     }
 }
