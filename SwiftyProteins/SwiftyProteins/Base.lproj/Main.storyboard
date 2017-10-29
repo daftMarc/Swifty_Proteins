@@ -268,24 +268,51 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0B-1a-rTD">
-                                <rect key="frame" x="18" y="72" width="285" height="20.5"/>
+                                <rect key="frame" x="158" y="72" width="4.5" height="20.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="6hY-zz-iTg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2B-4I-XeO">
+                                <rect key="frame" x="16" y="101" width="174" height="30"/>
+                                <color key="backgroundColor" red="0.30196078430000001" green="0.81176470590000005" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title=" Ball-and-stick / Spheres ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="changeModelAction:" destination="Bej-Y2-4VU" eventType="touchUpInside" id="shf-Jj-CVl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Re9-Su-ieS" firstAttribute="trailing" secondItem="CJd-JO-70c" secondAttribute="trailingMargin" id="3Iv-Nr-6bE"/>
                             <constraint firstAttribute="trailing" secondItem="Yrv-Ey-by5" secondAttribute="trailing" id="6xu-fA-LiH"/>
-                            <constraint firstItem="l0B-1a-rTD" firstAttribute="top" secondItem="sE8-UK-kHp" secondAttribute="bottom" constant="8" symbolic="YES" id="8lV-9H-h1N"/>
-                            <constraint firstItem="Re9-Su-ieS" firstAttribute="top" secondItem="l0B-1a-rTD" secondAttribute="bottom" constant="8" symbolic="YES" id="SZn-zL-QgX"/>
+                            <constraint firstItem="z2B-4I-XeO" firstAttribute="leading" secondItem="CJd-JO-70c" secondAttribute="leadingMargin" id="E3q-lS-sP0"/>
                             <constraint firstItem="Yrv-Ey-by5" firstAttribute="top" secondItem="CJd-JO-70c" secondAttribute="top" id="VzF-u4-ghL"/>
-                            <constraint firstItem="l0B-1a-rTD" firstAttribute="centerX" secondItem="R2D-4R-U1S" secondAttribute="centerX" id="boR-I3-p11"/>
+                            <constraint firstItem="l0B-1a-rTD" firstAttribute="centerX" secondItem="CJd-JO-70c" secondAttribute="centerX" id="X7p-ka-C8q"/>
                             <constraint firstItem="Yrv-Ey-by5" firstAttribute="bottom" secondItem="Zba-YU-J2t" secondAttribute="top" id="c2A-qh-1YR"/>
+                            <constraint firstItem="z2B-4I-XeO" firstAttribute="top" secondItem="Re9-Su-ieS" secondAttribute="top" id="euA-mT-2p8"/>
                             <constraint firstItem="Zba-YU-J2t" firstAttribute="top" secondItem="R2D-4R-U1S" secondAttribute="bottom" constant="8" symbolic="YES" id="gwO-mC-3yz"/>
-                            <constraint firstItem="l0B-1a-rTD" firstAttribute="leading" secondItem="CJd-JO-70c" secondAttribute="leadingMargin" constant="2" id="nUE-cB-Pks"/>
+                            <constraint firstItem="Re9-Su-ieS" firstAttribute="top" secondItem="l0B-1a-rTD" secondAttribute="bottom" constant="8.5" id="kgT-NU-Ykq"/>
                             <constraint firstItem="Yrv-Ey-by5" firstAttribute="leading" secondItem="CJd-JO-70c" secondAttribute="leading" id="pFk-8P-Syf"/>
+                            <constraint firstItem="l0B-1a-rTD" firstAttribute="top" secondItem="sE8-UK-kHp" secondAttribute="bottom" constant="8" id="sZ3-fn-Uuj"/>
+                            <constraint firstItem="z2B-4I-XeO" firstAttribute="bottom" secondItem="Re9-Su-ieS" secondAttribute="bottom" id="uDr-3V-iBu"/>
                             <constraint firstItem="R2D-4R-U1S" firstAttribute="centerX" secondItem="Yrv-Ey-by5" secondAttribute="centerX" id="xMq-42-cBL"/>
                         </constraints>
                     </view>
@@ -299,6 +326,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="ballsButton" destination="e1S-US-ioP" id="L7l-Cg-zqj"/>
                         <outlet property="elementName" destination="l0B-1a-rTD" id="Ivi-gI-i1E"/>
                         <outlet property="ligandView" destination="Yrv-Ey-by5" id="XFo-n3-wF1"/>
                         <outlet property="playButton" destination="Re9-Su-ieS" id="liX-Gm-MVs"/>

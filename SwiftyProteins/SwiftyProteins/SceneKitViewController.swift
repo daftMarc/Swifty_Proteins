@@ -35,29 +35,35 @@ class SceneKitViewController: UIViewController {
     }
 
     @IBAction func removeBallsAction(_ sender: UIButton) {
-        if !self.displayBalls {
+        self.balls = !self.balls
+        if !self.balls {
             self.ligandScene.rootNode.enumerateChildNodes { (node, stop) -> Void in
                 if let color = node.geometry?.materials.first?.diffuse.contents as? UIColor {
                     if color != UIColor.lightGray { node.removeFromParentNode() }
                 }
             }
-        } else { self.drawAtoms(sticks: false) }
-        
-        self.rotation = true
-        self.ligandScene.rootNode.removeAction(forKey: Constants.rotate)
-        self.displayBalls = !self.displayBalls
+        } else { self.drawAtoms() }
     }
     
     @IBAction func removeSticksAction(_ sender: UIButton) {
         self.hydrogenIsOff = !self.hydrogenIsOff
+        
         if self.hydrogenIsOff {
             self.ligandScene.rootNode.enumerateChildNodes { (node, stop) -> Void in
-             node.removeFromParentNode()
+                 node.removeFromParentNode()
             }
         }
         self.drawAtoms()
     }
     
+    @IBAction func changeModelAction(_ sender: UIButton) {
+        self.spheresModel = !self.spheresModel
+        
+        self.removeAllChilds()
+        self.drawAtoms()
+    }
+    
+    @IBOutlet weak var ballsButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var ligandView: SCNView!
     @IBOutlet weak var elementName: UILabel!
@@ -65,8 +71,19 @@ class SceneKitViewController: UIViewController {
     let cameraNode = SCNNode()
     var myLigand: Ligand!
     var rotation = true
-    var displayBalls = false
-    var displaySticks = false
+    var balls = true
+    var spheresModel = false {
+        didSet {
+            if self.spheresModel {
+                self.ballsButton.isUserInteractionEnabled = false
+                self.ballsButton.alpha = 0.5
+            }
+            else {
+                self.ballsButton.isUserInteractionEnabled = true
+                self.ballsButton.alpha = 1
+            }
+        }
+    }
     var hydrogenIsOff = true
     
     override func viewDidLoad() {
@@ -105,22 +122,22 @@ class SceneKitViewController: UIViewController {
         if let hitObj = hitList.first {
             let node = hitObj.node
             if let atomName = node.name{
-                self.elementName.text = "Element = \(atomName)"
+                self.elementName.text = " Element = \(atomName) "
             }
         }
     }
     
-    func drawAtoms(balls: Bool = true, sticks: Bool = true) {
+    func drawAtoms() {
         for atom in myLigand.atoms {
             let coor = SCNVector3(x: atom.coord.x!, y: atom.coord.y!, z: atom.coord.z!)
             
-            if balls { createTarget(atomName: atom.name!, coor: coor, color: Constants.CPKColors[atom.name!] ?? Constants.defaultColor) }
-            if sticks { createLink(atom: atom, number: atom.number!, connect: atom.conect) }
+            if self.balls { createTarget(atomName: atom.name!, coor: coor, color: Constants.CPKColors[atom.name!] ?? Constants.defaultColor) }
+            createLink(atom: atom, number: atom.number!, connect: atom.conect)
         }
     }
     
     func createTarget(atomName: String, coor: SCNVector3, color: UIColor) {
-        let geometry:SCNGeometry = SCNSphere(radius: 0.2)
+        let geometry:SCNGeometry = SCNSphere(radius: self.spheresModel ? 0.9 : 0.2)
 
         geometry.materials.first?.diffuse.contents = color
         
@@ -148,7 +165,7 @@ class SceneKitViewController: UIViewController {
         
             if self.hydrogenIsOff, atom2!.name == "H" { continue }
             print(ligandScene.rootNode.childNodes.count)
-            ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: 0.1, color: .lightGray))
+            ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: self.spheresModel ? 0.9 : 0.1, color: .lightGray))
             print(ligandScene.rootNode.childNodes.count)
 
         }
@@ -163,6 +180,12 @@ class SceneKitViewController: UIViewController {
         return nil
     }
 
+    func removeAllChilds() {
+        self.ligandScene.rootNode.enumerateChildNodes { (node, stop) -> Void in
+            node.removeFromParentNode()
+        }
+    }
+    
 }
 
 extension SCNNode {
