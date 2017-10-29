@@ -38,7 +38,7 @@ class SceneKitViewController: UIViewController {
         if !self.displayBalls {
             self.ligandScene.rootNode.enumerateChildNodes { (node, stop) -> Void in
                 if let color = node.geometry?.materials.first?.diffuse.contents as? UIColor {
-                    if color != UIColor.cyan { node.removeFromParentNode() }
+                    if color != UIColor.lightGray { node.removeFromParentNode() }
                 }
             }
         } else { self.drawAtoms(sticks: false) }
@@ -49,17 +49,13 @@ class SceneKitViewController: UIViewController {
     }
     
     @IBAction func removeSticksAction(_ sender: UIButton) {
-        if !self.displaySticks {
+        self.hydrogenIsOff = !self.hydrogenIsOff
+        if self.hydrogenIsOff {
             self.ligandScene.rootNode.enumerateChildNodes { (node, stop) -> Void in
-                if let color = node.geometry?.materials.first?.diffuse.contents as? UIColor {
-                    if color == UIColor.cyan { node.removeFromParentNode() }
-                }
+             node.removeFromParentNode()
             }
-        } else { self.drawAtoms(balls: false) }
-        
-        self.rotation = true
-        self.ligandScene.rootNode.removeAction(forKey: Constants.rotate)
-        self.displaySticks = !self.displaySticks
+        }
+        self.drawAtoms()
     }
     
     @IBOutlet weak var playButton: UIButton!
@@ -71,6 +67,7 @@ class SceneKitViewController: UIViewController {
     var rotation = true
     var displayBalls = false
     var displaySticks = false
+    var hydrogenIsOff = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,6 +129,8 @@ class SceneKitViewController: UIViewController {
         geometryNode.position = coor
         geometryNode.name = atomName
         
+        if self.hydrogenIsOff, atomName == "H" { return }
+        
         ligandScene.rootNode.addChildNode(geometryNode)
     }
     
@@ -140,14 +139,14 @@ class SceneKitViewController: UIViewController {
         let atom1 = getAtomWith(number: number)
         let vec1 = SCNVector3(x: (atom1?.coord.x)!, y: (atom1?.coord.y)!, z: (atom1?.coord.z)!)
         
-//        if atom.name == "H"{ return }
+        if self.hydrogenIsOff, atom.name == "H" { return }
         
         for connection in connect{
             let line = SCNNode()
             let atom2 = getAtomWith(number: connection)
             let vec2 = SCNVector3(x: (atom2?.coord.x)!, y: (atom2?.coord.y)!, z: (atom2?.coord.z)!)
-            
-//            if atom2!.name == "H"{ continue }
+        
+            if self.hydrogenIsOff, atom2!.name == "H" { continue }
             print(ligandScene.rootNode.childNodes.count)
             ligandScene.rootNode.addChildNode(line.buildLineInTwoPointsWithRotation(from: vec1, to: vec2, radius: 0.1, color: .lightGray))
             print(ligandScene.rootNode.childNodes.count)

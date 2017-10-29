@@ -140,6 +140,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.11978573350000001" green="0.71017664670000002" blue="0.50082731250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="0vv-Vu-uv6">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -204,7 +205,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-0m-vnU">
                                         <rect key="frame" x="0.0" y="0.0" width="95" height="30"/>
                                         <color key="backgroundColor" red="0.30196078430000001" green="0.81176470590000005" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Sticks">
+                                        <state key="normal" title="Hydrogens">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
