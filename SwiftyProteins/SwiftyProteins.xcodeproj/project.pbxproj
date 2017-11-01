@@ -201,6 +201,7 @@
 				TargetAttributes = {
 					B41953941F9A1EB90062FDE2 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = AATYTAHLB3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -438,6 +439,7 @@
 			baseConfigurationReference = A268190E274D3CF364D049E3 /* Pods-SwiftyProteins.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AATYTAHLB3;
 				INFOPLIST_FILE = SwiftyProteins/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mfamilar.SwiftyProteins;
@@ -451,6 +453,7 @@
 			baseConfigurationReference = FD0894E839427F2D4C3C701B /* Pods-SwiftyProteins.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AATYTAHLB3;
 				INFOPLIST_FILE = SwiftyProteins/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mfamilar.SwiftyProteins;
