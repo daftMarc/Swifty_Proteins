@@ -31,9 +31,9 @@ class SplashScreenViewController: UIViewController {
             } else {
                 self.showAlert(message: "Application can't get data of ligands.txt")
             }
-        } /*else {
-         self.showAlert(message: "ligands.txt file not find")
-         }*/
+        } else {
+            self.showAlert(message: "ligands.txt file not find")
+        }
     }
     
     

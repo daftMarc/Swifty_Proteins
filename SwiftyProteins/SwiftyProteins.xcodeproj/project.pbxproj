@@ -37,7 +37,7 @@
 		A9E46AB51F9E43CD00E53522 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
 		B41213971F9DDD1A00B2CC9D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		B41953951F9A1EB90062FDE2 /* SwiftyProteins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyProteins.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B41953981F9A1EB90062FDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B41953981F9A1EB90062FDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		B419539D1F9A1EB90062FDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B419539F1F9A1EB90062FDE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B41953A21F9A1EB90062FDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,6 +83,7 @@
 		A9E46ABA1F9E43DD00E53522 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B41953981F9A1EB90062FDE2 /* AppDelegate.swift */,
 				B41953A41F9A1EB90062FDE2 /* Info.plist */,
 				A9E46AB41F9E43CD00E53522 /* ligands.txt */,
 				B419539F1F9A1EB90062FDE2 /* Assets.xcassets */,
@@ -112,7 +113,6 @@
 		B41953971F9A1EB90062FDE2 /* SwiftyProteins */ = {
 			isa = PBXGroup;
 			children = (
-				B41953981F9A1EB90062FDE2 /* AppDelegate.swift */,
 				B4BD67991FA0951A003AF625 /* Ligand.swift */,
 				B4FF207F1FA9DA1C00F45A47 /* CylinderLine.swift */,
 				B4BD67921FA0936F003AF625 /* Ressources.swift */,
