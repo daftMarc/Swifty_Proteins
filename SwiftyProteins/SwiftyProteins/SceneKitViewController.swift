@@ -72,6 +72,7 @@ class SceneKitViewController: UIViewController {
         self.drawAtoms()
     }
     
+    
     @IBOutlet weak var changeModelButton: UIButton!
     @IBOutlet weak var ballsButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -96,18 +97,21 @@ class SceneKitViewController: UIViewController {
     }
     var hydrogenIsOff = true
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = self.myLigand.description?.id
         
+        // label design
         self.elementName.layer.masksToBounds = true
         self.elementName.layer.cornerRadius = 5
         
+        // SceneKit settings
         self.cameraNode.camera = SCNCamera()
         self.ligandScene.rootNode.addChildNode(self.cameraNode)
         
-        // place the camera
+        // place the camera for experimental proteins
         let firstAtom = self.myLigand.atoms[0]
         if firstAtom.coord.x! > Float(10) {
             self.cameraNode.position = SCNVector3(x: firstAtom.coord.x!, y: firstAtom.coord.y!, z: firstAtom.coord.y! + 30)
@@ -127,18 +131,6 @@ class SceneKitViewController: UIViewController {
         self.drawAtoms()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        let location = touch.location(in: ligandView)
-        let hitList = ligandView.hitTest(location, options: nil)
-        
-        if let hitObj = hitList.first {
-            let node = hitObj.node
-            if let atomName = node.name{
-                self.elementName.text = " Element = \(atomName) "
-            }
-        }
-    }
     
     func drawAtoms() {
         for atom in myLigand.atoms {
@@ -148,6 +140,7 @@ class SceneKitViewController: UIViewController {
             createLink(atom: atom, number: atom.number!, connect: atom.conect)
         }
     }
+    
     
     func createTarget(atomName: String, coor: SCNVector3, color: UIColor) {
         let geometry:SCNGeometry = SCNSphere(radius: self.spheresModel ? 0.9 : 0.2)
@@ -162,6 +155,16 @@ class SceneKitViewController: UIViewController {
         if self.hydrogenIsOff, atomName == "H" { return }
         
         ligandScene.rootNode.addChildNode(geometryNode)
+    }
+    
+    
+    func getAtomWith(number: Int) -> Atom? {
+        for atom in myLigand.atoms{
+            if atom.number == number {
+                return atom
+            }
+        }
+        return nil
     }
     
     func createLink(atom: Atom, number: Int, connect: [Int]){
@@ -181,86 +184,29 @@ class SceneKitViewController: UIViewController {
         }
     }
     
-    func getAtomWith(number: Int) -> Atom? {
-        for atom in myLigand.atoms{
-            if atom.number == number {
-                return atom
-            }
-        }
-        return nil
-    }
-
+    
     func removeAllChilds() {
         self.ligandScene.rootNode.enumerateChildNodes { (node, stop) -> Void in
             node.removeFromParentNode()
         }
     }
     
-}
-
-class   CylinderLine: SCNNode
-{
-    init( parent: SCNNode,//Needed to add destination point of your line
-        v1: SCNVector3,//source
-        v2: SCNVector3,//destination
-        radius: CGFloat,//somes option for the cylinder
-        color: UIColor )// color of your node object
-    {
-        super.init()
-        
-        //Calcul the height of our line
-        let  height = v1.distance(receiver: v2)
-        
-        //set position to v1 coordonate
-        position = v1
-        
-        //Create the second node to draw direction vector
-        let nodeV2 = SCNNode()
-        
-        //define his position
-        nodeV2.position = v2
-        //add it to parent
-        parent.addChildNode(nodeV2)
-        
-        //Align Z axis
-        let zAlign = SCNNode()
-        zAlign.eulerAngles.x = Float(Double.pi / 2)
-        
-        //create our cylinder
-        let cyl = SCNCylinder(radius: radius, height: CGFloat(height))
-        cyl.firstMaterial?.diffuse.contents = color
-        
-        //Create node with cylinder
-        let nodeCyl = SCNNode(geometry: cyl )
-        nodeCyl.position.y = -height/2
-        zAlign.addChildNode(nodeCyl)
-        
-        //Add it to child
-        addChildNode(zAlign)
-        
-        //set contrainte direction to our vector
-        constraints = [SCNLookAtConstraint(target: nodeV2)]
-    }
     
-    override init() {
-        super.init()
-    }
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-}
-
-private extension SCNVector3{
-    func distance(receiver:SCNVector3) -> Float{
-        let xd = receiver.x - self.x
-        let yd = receiver.y - self.y
-        let zd = receiver.z - self.z
-        let distance = Float(sqrt(xd * xd + yd * yd + zd * zd))
+    
+    
+    // MARK: - Handle gesture
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.location(in: ligandView)
+        let hitList = ligandView.hitTest(location, options: nil)
         
-        if (distance < 0){
-            return (distance * -1)
-        } else {
-            return (distance)
+        if let hitObj = hitList.first {
+            let node = hitObj.node
+            if let atomName = node.name{
+                self.elementName.text = " Element = \(atomName) "
+            }
         }
     }
+    
 }
