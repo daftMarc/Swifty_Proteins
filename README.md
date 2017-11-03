@@ -3,11 +3,11 @@
 <br/>
 
 <div align="center">
-<img src="https://imgur.com/ZNmQcso" width="40%"/>
-<img src="https://imgur.com/DCQl73O" width="40%"/>
-<img src="https://imgur.com/MXsvshw" width="40%"/>
-<img src="https://imgur.com/5g47iGI" width="40%"/>
-<img src="https://imgur.com/hE1CAdI" width="40%"/>
+<img src="https://i.imgur.com/ZNmQcso.png" width="40%"/>
+<img src="https://i.imgur.com/DCQl73O.png" width="40%"/>
+<img src="https://i.imgur.com/MXsvshw.png" width="40%"/>
+<img src="https://i.imgur.com/5g47iGI.png" width="40%"/>
+<img src="https://i.imgur.com/hE1CAdI.png" width="40%"/>
 </div>
 
 <br/>
